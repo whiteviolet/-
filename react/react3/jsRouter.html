@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>Title</title>
+</head>
+<body>
+   <button class="study">小说</button>
+   <button class="music">音乐</button>
+   <button class="game">游戏</button>
+<script>
+    let study=document.querySelector(".study");
+    let music=document.querySelector(".music");
+    let game=document.querySelector(".game");
+    let div=document.createElement("div");
+    Object.assign(div.style,{
+        width:"200px",
+        height:"100px",
+        border:"1px solid red"
+    })
+    study.addEventListener("click",studyclickHandler);
+    music.addEventListener("click",musicclickHandler);
+    game.addEventListener("click",gameclickHandler);
+    function studyclickHandler(){
+        window.location.href="/react3/jsRouter.html#1"
+        let str=location.hash
+        let arr=parseInt(str.slice(1))
+                change(arr)
+    }
+    function musicclickHandler(){
+        window.location.href="/react3/jsRouter.html#2"
+        let str=location.hash
+        let arr=parseInt(str.slice(1))
+        change(arr)
+    }
+    function gameclickHandler(){
+        window.location.href="/react3/jsRouter.html#3"
+        let str=location.hash
+        let arr=parseInt(str.slice(1))
+        change(arr)
+    }
+    function change(url){
+
+      switch(url){
+          case 1 :div.textContent="遮天";
+          break;
+          case 2 :div.textContent="求佛";
+              break;
+          case 3 :div.textContent="英雄联盟";
+              break;
+        }
+    }
+    document.body.appendChild(div)
+
+</script>
+</body>
+</html>

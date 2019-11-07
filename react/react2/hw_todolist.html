@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>props</title>
+    <style>
+        .poin{cursor: pointer}
+    </style>
+
+</head>
+<body>
+<div id="app"></div>
+<script src="react.min.js"></script>
+<script src="react-dom.min.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    let Component=React.createClass({
+        getInitialState(){
+            return {
+                data:[]
+            }
+
+        },
+        add(){
+            this.setState({data:this.newData});
+        },
+        addData(e) {
+          let data = e.target.value;
+            this.newData=this.state.data.concat({data:data,fin:false})
+        },
+        render(){
+
+            return (
+                <div>
+                    <input type="text" onInput={this.addData} onBlur={(e)=>{
+                        e.target.value=""
+                    }}/>
+
+                    <Child1 add={this.add} ></Child1>
+                    <Child2 arr={this.state.data} del={this.del} change={this.change}></Child2>
+                </div>
+            )
+        },
+        //删除
+        del(index){
+            this.state.data.splice(index,1)
+            let data=this.state.data
+            this.setState({data:data})
+        },
+        change(index){
+
+            this.state.data[index].fin=true;
+            let data=this.state.data
+            this.setState({data:data})
+        }
+    });
+    let Child1=React.createClass({
+        getInitialState(){
+            return {
+
+            }
+        },
+        render(){
+
+            return (
+                    <div>
+                        <button onClick={this.add}>添加</button>
+                    </div>
+            )
+        },
+        add() {
+            this.props.add()
+
+        }
+        });
+    let Child2=React.createClass({
+        getInitialState(){
+          return {
+
+          }
+        },
+        render(){
+
+            return (
+                    <div>
+                        {this.props.arr.map((item,index)=>{
+                            return <p>{item.data}
+                                <span className="poin" onClick={this.del.bind(this,index)} style={{display:"inlineBlock",border:"1px solid green"}}>删除</span>
+                                <span className="poin" onClick={this.change.bind(this,index)} style={{display:"inlineBlock",border:"1px solid green"}}>{item.fin?"完成":"未完成"}</span>
+
+                                  </p>
+                        })}
+
+                    </div>
+            )
+        },
+        del(index){
+            this.props.del(index)
+        },
+        change(index){
+            this.props.change(index)
+        }
+
+    });
+    ReactDOM.render(<Component/>,document.getElementById("app"))
+</script>
+</body>
+</html>

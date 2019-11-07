@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>react</title>
+    <style>
+        table{border:1px solid red;border-spacing:inherit;border-collapse:collapse }
+        td{width:50px;height:20px;text-align: center;border:1px solid green}
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script src="react.min.js"></script>
+<script src="react-dom.min.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    let Ahh=React.createClass({
+        getInitialState(){
+            return {
+                goods:[1,2,3,4,5,6,7,8,9]
+            }
+        },
+        render(){
+
+            return(
+                <table>
+
+                        {this.state.goods.map((item,index)=>{
+                            return <tr className={index}>
+                                {this.state.goods.map(item=>{
+                                    return <td onMouseOver={this.change}>{item}</td>
+                                })}
+                            </tr>
+                        })}
+
+                </table>
+            )
+        },
+        change(e){
+            console.log(e.target)
+            e.target.style.background="red"
+        }
+    })
+    ReactDOM.render(<Ahh/>,app)
+    let trs=document.querySelectorAll("tr");
+    var arr=Array.from(trs);
+//    arr[1].style.background="green"
+
+    for(let key in arr){
+        if(key%2==1){
+        arr[key].style.background="green"
+        }
+
+    }
+
+</script>
+</body>
+</html>

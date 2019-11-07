@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>props</title>
+
+</head>
+<body>
+<div id="app"></div>
+<script src="react.min.js"></script>
+<script src="react-dom.min.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    let Component=React.createClass({
+        getInitialState(){
+            return {
+                name:"留白"
+            }
+
+        },
+        render(){
+
+            return (
+                <div>
+                    <h1>父组件</h1>
+                    <hr/>
+                    <button onClick={()=>{
+                        this.setState({name:"留黑"})
+                    }}>变身</button>
+                    <ChildComponent name={this.state.name}></ChildComponent>
+
+
+                </div>
+            )
+        }
+    });
+    let ChildComponent=React.createClass({
+
+        render(){
+
+
+            return (
+                    <div>
+                        {this.props.name}
+                    </div>
+            )
+        }
+    });
+    ReactDOM.render(<Component/>,document.getElementById("app"))
+</script>
+</body>
+</html>

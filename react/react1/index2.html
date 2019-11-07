@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>选项卡</title>
+    <style>
+        .nav{width:700px;height:30px;display: flex;justify-content: space-between;align-items: center;cursor: pointer }
+    </style>
+</head>
+<body>
+ <div id="app">
+
+ </div>
+ <div id="app1">
+
+ </div>
+<script src="react.min.js"></script>
+<script src="react-dom.min.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    let Conponents=React.createClass({
+        getInitialState(){
+            return{
+                classify:["电影","音乐","游戏","学习"],
+                film:["我和我的祖国","战狼","龙猫","肖申克的救赎"],
+                music:["红色高跟鞋","大浪淘沙","如花","天命风流"],
+                game:["英雄联盟","王者荣耀","彩虹六号","梦三国"],
+                study:["html","css","javascript","框架"],
+                type:"请等待"
+            }
+
+
+        },
+        show(index){
+            this.state.type=index;
+            this.setState({type:index});
+
+        },
+
+        render(){
+
+            return(
+                <div>
+                    <div>
+                        {this.state.type}
+                    </div>
+                    <div>
+                        <ul className="nav">{this.state.classify.map((item,index)=>{
+                            return <li onClick={this.show.bind(Conponent,index)}>{item}</li>
+                        })}</ul>
+                    </div>
+                </div>
+            )
+
+        }
+    })
+    ReactDOM.render(<Conponents/>,document.getElementById("app"))
+
+</script>
+</body>
+</html>
