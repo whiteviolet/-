@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:50px;
+            height:50px;
+            background-color: red;
+            margin-bottom: 10px;
+        }
+        .box9{
+            position:relative;
+        }
+        .box9 .box{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak="">
+    <div class="box" @mouseover="mouseover($event)" @mouseout="mouseout($event)"></div>
+    <div class="box" @mousemove="mousemove($event)"></div>
+    <div class="box9">
+        <div class="box" @touchmove="touchmove($event)" @touchend="touchend($event)" :style="{left:left,top:top}" @touchstart="touchstart($event)"></div>
+    </div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                left:0,
+                top:0,
+                startLeft:0,
+                startTop:0,
+
+            }
+        },
+        methods: {
+            mouseover(e) {
+                console.log(e)
+            },
+            mouseout(e) {
+                console.log(e)
+            },
+            mousemove(e){
+                console.log(e)
+            },
+            touchstart(e){
+//                console.log(e)
+                this.startLeft=e.targetTouches[0].pageX-parseInt(this.left);
+                this.startTop=e.targetTouches[0].pageY-parseInt(this.top);
+            },
+            touchmove(e){
+//                console.log(e.targetTouches[0].clientX)
+                this.left=e.targetTouches[0].pageX-this.startLeft+"px";
+                this.top=e.targetTouches[0].pageY-this.startTop+"px";
+            },
+
+            touchend(e){
+//                console.log(e)
+            }
+
+        }
+        })
+</script>
+</body>
+</html>

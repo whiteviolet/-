@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>看看</title>
+    <style>
+        li{
+            margin-bottom: 10px;
+        }
+        .box{
+            width:50px;
+            height:51px;
+            background: #00fff0;
+        }
+        .active{
+            background: #ccff88;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <ul>
+        <li :class="{ active:item.color}" v-for="(item,index) in orders" v-bind:key="index" @click="co(index)">{{index}}{{item.title}}            <button type="button" @click.stop="del(index)">删除</button></li>
+    </ul>
+    <div class="box" v-show="isShow"></div>
+    <button @CLICK=isShow=!isShow>切换</button>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                active:false,
+                isShow:true,
+                orders:[
+                    {title:"男装",color:false},
+                    {title:"女装",color:false},
+                    {title:"童装",color:false},
+                ]
+            }
+        },
+        methods:{
+            co(index){
+//                console.log(inde
+                this.orders[index].color=!this.orders[index].color
+            },
+
+            del(index){
+                if(confirm("确定？")){
+                    this.orders.splice(index,1)
+                }
+            }
+
+        }
+
+    })
+</script>
+</body>
+</html>

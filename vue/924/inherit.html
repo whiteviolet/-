@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>父组件给子组件传值</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak="">
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+    //子组件
+    let ChildrenComponent={
+        template:`
+            <div>{{title}}</div>
+         `,
+        props:{
+            title:{
+                type:String,//类型
+                required:true,//是否必填
+                default:""//默认
+
+            }
+        }
+
+    };
+    //父组件
+    let ParentComponent={
+        template:`
+            <div ><ChildrenComponent title="woshi"></ChildrenComponent></div>
+        `,
+        components:{
+            ChildrenComponent
+        }
+    }
+
+    //入口组件
+    let App={
+       template:`
+            <div>
+                <ParentComponent></ParentComponent>
+
+
+            </div>
+
+        `,
+        components:{
+            ParentComponent
+        }
+    }
+    new Vue({
+        el:"#app",
+        template:`
+            <App></App>
+                    `
+        ,
+        //注册组件
+        components:{
+            App
+        }
+
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>看看</title>
+    <style>
+        .box{
+            width:50px;
+            height:51px;
+            background: #00fff0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <ul>
+        <li v-for="(item,index) in orders" v-bind:key="index">{{index}}{{item.title}}</li>
+    </ul>
+    <div class="box" v-show="isShow"></div>
+    <button @CLICK=isShow=!isShow>切换</button>
+    <div v-html="content"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                isShow:true,
+                orders:[
+                    {title:"男装"},
+                    {title:"女装"},
+                    {title:"童装"},
+
+                ],
+                content:"<span style='color:blue'>内容</span>"
+            }
+
+
+
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>强记</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak="">
+{{name}}
+</div>
+<script src="js/vue.js"></script>
+<script>
+    let HeaderComponent={
+        template:`
+        <div>公共头</div>
+      `
+    };
+    //注册公共组件
+    Vue.component("HeaderComp",HeaderComponent);
+    //全局过滤器
+    Vue.filter("abcd",function (value,a1) {
+        return value+a1
+    })
+    //首页
+    let HomePage={
+            template:`
+                <div><HeaderComp></HeaderComp>
+                我是首页
+                计算器：{{count|abcd(2 )}}
+                </div>
+
+            `,
+        data(){
+                return{
+                    count:1
+                }
+        }
+    }
+    //新闻
+    let NewPage={
+        template:`
+                <div><HeaderComp></HeaderComp>我是新闻</div>
+
+            `
+    }
+    //入口组件
+    let App={
+       template:`
+            <div>
+                <HomePage></HomePage>
+
+                <NewPage></NewPage>
+            </div>
+
+        `,
+        components:{
+           HomePage,
+            NewPage
+        }
+    }
+    new Vue({
+        el:"#app",
+        template:`
+            <App></App>
+                    `
+        ,
+        //注册组件
+        components:{
+            App
+        }
+
+
+    })
+</script>
+</body>
+</html>

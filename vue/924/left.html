@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>生命周期</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak="">
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+
+    let HomePage={
+            template:`
+                <div>
+                    <button type="button" @click="name='李四'">{{name}}</button>{{name}}
+                </div>
+
+
+            `,
+        data(){
+                return{
+                    name:"张三"
+
+                }
+        },
+        beforeCreate(){
+          console.log("一开始")
+        },
+        created(){
+            console.log("我只相信")
+
+        },
+        updated(){
+            console.log("改变")
+        }
+    }
+
+    //入口组件
+    let App={
+       template:`
+            <div>
+                <HomePage></HomePage>
+
+
+            </div>
+
+        `,
+        components:{
+           HomePage,
+
+        }
+    }
+    new Vue({
+        el:"#app",
+        template:`
+            <App></App>
+                    `
+        ,
+        //注册组件
+        components:{
+            App
+        }
+
+
+    })
+</script>
+</body>
+</html>

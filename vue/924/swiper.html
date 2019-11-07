@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>轮播图</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+        .swiper-main{
+            width:500px;
+            height:300px;
+            position: relative;
+            z-index: 1;
+
+        }
+        .swiper-wrap{width:100%;height: 100%;}
+        .swiper-main .swiper-wrap .over{width:100%;height: 100%;position: absolute;z-index: 1}
+        .swiper-main .swiper-wrap .over img{width:100%;height: 100%;}
+        .swiper-main .page{width: auto;height: auto;position: absolute;z-index: 2;left:50%;bottom:10%;display: flex;
+        transform: transLateX(-50%)}
+        .swiper-main .page .spot{width:10px;height: 10px;background-color:rgba(255,255,255,0.5);Border-radius:50%;margin-left: 5px;
+        margin-right: 5px;cursor:pointer}
+        .swiper-main .page .spot.active{background-color:rgba(0,0,0,0.5)}
+        .slide-enter{opacity:0}
+        .slide-enter-to{opacity:1}
+        .slide-leave{opacity:1}
+        .slide-leave-to{opacity:0}
+        .slide-enter-active,.slide-leave-active{transition:opacity 1s}
+    </style>
+
+</head>
+<div id="app" v-cloak=""></div>
+<body>
+<script src="js/vue.js"></script>
+<script>
+
+
+
+
+
+
+    // 轮播组件
+    let Swipercomponent={
+        template:`
+            <div>
+                <div class="swiper-main">
+                    <div class="swiper-wrap">
+                        <transition-group name="slide">
+                            <div class="over" v-for="(item,index) in slide" :key="index" v-show="item.isShow" ><img :src="item.image" alt=""></div>
+                        </transition-group>
+
+
+
+
+                    </div>
+                    <div class="page">
+                        <div :class="{spot:true,active:item.isShow}" v-for="(item,index) in slide" :key="index" @click="changeImg(index)"></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        `,
+        data(){
+            return {
+                slide:[
+                    {image:"./img/6.jpg",isShow:true},
+                    {image:"./img/7.jpg",isShow:false},
+                    {image:"./img/8.jpg",isShow:false},
+                    {image:"./img/9.jpg",isShow:false},
+                    {image:"./img/10.jpg",isShow:false}
+                ]
+            }
+        },
+        methods:{
+            changeImg(index){
+//                console.log(index)
+                for(var i=0;i<this.slide.length;i++){
+                    if(this.slide[i].isShow){
+                        this.slide[i].isShow=false
+                    }
+                }
+                this.slide[index].isShow=true;
+                this.$set(this.slide,index,this.slide[index])
+            }
+        }
+
+
+    }
+
+
+
+    let App={
+        template:`
+        <div>
+            <Swipercomponent></Swipercomponent>
+
+        </div>
+
+         `,
+        components:{
+            Swipercomponent
+
+
+
+        }
+    }
+    new Vue({
+        el:"#app",
+        template:`
+            <div><App></App></div>
+        `,
+        components:{
+            App
+        }
+    })
+</script>
+</body>
+</html>

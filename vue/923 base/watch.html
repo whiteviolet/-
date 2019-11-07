@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>watch监听</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak="">
+    <button type="button" @click="name='李四'">{{name}}</button>
+    <button type="button" @click="classfiy.title='李四'">{{classfiy.title}}</button>
+    <button type="button" @click="classfiy.child.title='李四'">{{classfiy.child.title}}</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                name:"张三",
+                classfiy:{
+                    title:"miao",
+                    child:{
+                        title:"sheng",
+                        child:{
+                            title: "long"
+                        }
+                    }
+                }
+            }
+        },
+        watch:{
+            name(newVal,oldVal){
+                console.log(newVal,oldVal)
+            },
+           "classfiy.title"(a,b){
+                console.log(a,b)
+            },
+            classfiy:{
+               handler(val){
+                    console.log(JSON.stringify(val))
+                },
+                deep:true
+            }
+        }
+    })
+</script>
+</body>
+</html>

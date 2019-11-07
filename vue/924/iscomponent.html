@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>动态组件切换</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak></div>
+<script src="js/vue.js"></script>
+<script>
+
+   let InputComponent={
+       template:`
+            <div>
+                <input type="text" >
+
+            </div>
+
+        `
+   };
+   let Button={
+       template:`
+            <button type="button">提交</button>
+
+        `
+   }
+
+
+
+
+    //入口组件
+    let App={
+        template:`
+            <div>
+
+            <button @click="inp()">显示input</button>
+            <button @click="btn()">显示提交按钮</button><br>
+            <component :is="compName"></component>
+                 <!--<InputComponent></InputComponent>-->
+                   <!--<Button ></Button>-->
+            </div>
+        `,
+        components:{
+            InputComponent,
+            Button
+        },
+        data(){
+            return {
+                compName:""
+
+            }
+        },
+        methods:{
+            inp(){
+                this.compName=InputComponent
+            },
+            btn(){
+                this.compName=Button
+            }
+        }
+    };
+    new Vue({
+        el:"#app",
+        template:`
+           <div>
+                <App></App>
+            </div>
+        `,
+        //注册局部组件
+        components:{
+            App
+        }
+    });
+</script>
+</body>
+</html>

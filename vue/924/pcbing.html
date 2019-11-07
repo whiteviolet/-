@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>父子组件双向绑定</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+    let Input={
+        template:`
+            <input :type="type" v-model="abcd" />
+        `,
+        props:{
+            type:{
+                type:String,
+                default:""
+            },
+            name:{
+                type:String
+            }
+
+        },
+        computed:{
+            abcd:{
+                get(){
+                    return this.name
+
+                },
+                set(val){
+//                    console.log(val)
+                    this.$emit("input",val)
+                }
+            }
+
+
+
+        }
+
+    }
+    let App={
+        template:`
+            <div>
+            <Input type="text" v-model="name"/> {{name}}
+            </div> `
+        ,
+        components:{
+            Input
+        },
+        data(){
+            return {
+                name:""
+            }
+        }
+    }
+
+ new Vue({
+     el:"#app",
+     template:`
+        <div>
+            <App></App>
+
+        </div>
+         `,
+     components:{
+         App
+     }
+ })
+</script>
+</body>
+</html>

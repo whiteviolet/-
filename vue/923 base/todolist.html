@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>列表</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak >
+    <input type="text" v-model="value" v-on:keyup.enter="add()"><button type="button" @click="add()">增加</button><button type="button" @click="getData()">提交</button>
+<table width="100%" border="1" cellspacing="0" cellpadding="0"  v-if="list.length>0"><!--有数据才有表格-->
+    <tr style="color:#FFFFFF">
+        <td  height="40" align="center" bgcolor="#0099FF"><label><input type="checkbox" @click="all()" :checked="isAll">全选</label></td>
+        <td align="center" bgcolor="#0099FF">标题</td>
+        <td align="center" bgcolor="#0099FF">管理</td>
+    </tr>
+    <tr v-for="(item,index) in list " :key="index">
+        <td height="40" align="center"><input type="checkbox" @click="tdChecked(index)" :checked="item.checked"></td>
+        <td align="center">{{item.title}}</td>
+        <td align="center"><span @click="del(index)">删除</span></td>
+    </tr>
+</table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                value:"",
+               list:[],
+                isAll:false
+            }
+        },
+        methods:{
+            add(){
+                if(this.value.match(/^\s*$/)){
+                    alert("请输出内容")
+
+                }else{
+                    this.list.push({title:this.value,checked:false});
+                    this.value="";
+                }
+//                console.log(this.value)接收到input里的数据
+
+
+            },
+            del(index){
+                if(confirm("确定吗？")){
+                    this.list.splice(index,1)
+                }
+
+            },
+            all(){
+                this.isAll=!this.isAll
+                for(var i=0;i<this.list.length;i++){
+                    this.list[i].checked=this.isAll;
+                }
+            },
+            tdChecked(index){
+                if(this.list.length>0){
+
+//                    console.log(this.list[index].checked)
+                    this.list[index].checked=!this.list[index].checked
+                    for(let i=0;i<this.list.length;i++){
+                        if(!this.list[i].checked){
+                         this.isAll=false;
+                            break;
+                        }else{
+                            this.isAll=true;
+                        }
+
+                    }
+
+                }
+
+
+            },
+            getData(){
+                var data=[];
+                for(var i=0;i<this.list.length;i++){
+                    if(this.list[i].checked){
+                        data.push(this.list)
+                    }
+                }
+                console.log(JSON.stringify(data))
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

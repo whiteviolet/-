@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>动画</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box{
+            width:50px;
+            height:50px;
+            background-color: #ff00ff;
+            position: absolute;
+            left:500px;
+            top: 50px;
+        }
+        .fade-enter{
+            left:0px;
+            top:50px;
+        }
+        .fade-enter-to{
+            left:500px;
+            top:50px;
+        }
+        .fade-enter-active{
+            transition:left 2s ;
+        }
+        .fade-leave{
+            left:500px;
+            top:50px;
+        }
+        .fade-leave-to{
+            left:0px;
+            top:50px;
+        }
+        .fade-leave-active{
+            transition:left 2s ;
+        }
+
+    </style>
+
+</head>
+<div id="app" v-cloak=""></div>
+<body>
+<script src="js/vue.js"></script>
+<script>
+
+    let Acomponent={
+        template:`
+            <div>
+
+            </div>
+        `,
+
+
+    }
+
+
+    //B组件
+    let Bcomponent={
+        template:`
+            <div>
+            <button type="button" @click="isShow=true">出现</button>
+                <button type="button" @click="isShow=false">消失</button>
+            <transition name="fade">
+
+                <div class="box" v-show="isShow"></div>
+            </transition>
+
+            </div>
+        `,
+        data(){
+            return {
+                isShow:false
+            }
+
+        }
+
+    }
+
+
+
+    let App={
+        template:`
+        <div>
+            <Acomponent></Acomponent>
+            <Bcomponent></Bcomponent>
+
+        </div>
+
+         `,
+        components:{
+            Acomponent,
+            Bcomponent
+
+
+        }
+    }
+    new Vue({
+        el:"#app",
+        template:`
+            <div><App></App></div>
+        `,
+        components:{
+            App
+        }
+    })
+</script>
+</body>
+</html>
