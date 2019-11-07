@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>会员注册</title>
+</head>
+<body>
+<%-include ../public/header%>
+<form action="/reg/save" method="post" enctype="multipart/form-data">
+    头像上传：<input type="file" name="head" /><br/>
+    用户名：<input type="text" name="username" placeholder="请输入用户名" /><br/>
+    密码：<input type="password" name="password" placeholder="请输入密码"><br/>
+    姓名：<input type="text" name="name" placeholder="请输入姓名" /><br/>
+    年龄：<input type="text" name="age" placeholder="请输入年龄" /><br/>
+    <button type="submit">注册</button>
+</form>
+</body>
+</html>

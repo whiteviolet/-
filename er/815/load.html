@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[];
+        var num=0;
+        loadImage();
+        function loadImage(){
+        var img=new Image();
+        img.src="img/golf0.jpg";
+        img.addEventListener("load",loadHandler)
+        document.body.appendChild(img)
+        
+    }
+        function loadHandler(e){
+            arr.push(this.cloneNode(false))
+            num++;
+            if(num>71) {
+                this.removeEventListener("load",loadHandler);
+                for(var i=0;i<arr.length;i++){
+                    console.log(arr[i].src)
+                }
+                return
+
+            }
+                
+           
+            
+            
+            this.src="img/golf"+num+".jpg";
+            
+
+
+        }
+
+
+
+    </script>
+</body>
+</html>

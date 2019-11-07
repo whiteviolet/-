@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html{
+        font-size: 100px;
+    }
+    body
+    {
+        margin: 0;
+        font-size: 14px;
+    }
+    .imgCon{
+        background-image: url("./img/a.jpg");
+        background-size: 100% 100%;
+        transition: all 0.5s;
+    }
+    .imgCon>img
+    {
+        position: absolute;
+        right: 0.5rem;
+        width: 1.08rem;
+        height:0.67rem;
+        border: solid 3px rgba(0,0,0,0);
+    }
+</style>
+
+</head>
+<body>
+        <div class="imgCon">
+                <img src="./img/a_icon.jpg">
+                <img src="./img/b_icon.jpg">
+                <img src="./img/c_icon.jpg">
+                <img src="./img/d_icon.jpg">
+                <img src="./img/e_icon.jpg">
+            </div>
+        
+            <script>
+                var div,imgList,id,pre;
+                // margin  距离顶端的距离 单位rem
+                const MARGIN=0.2;
+                const IMG_HEIGHT=0.73;
+             
+                init();
+                function init(){
+                    div=document.querySelector(".imgCon");
+                    div.style.width=screen.width/100+"rem";
+                    // 图片的高度是宽度1/3;  100是rem初始100px,screen.width是像素单位,除100就变成rem
+                    var height=screen.width/100/3;
+                    div.style.height=height+"rem";
+                    imgList=Array.from(div.children);
+                    // m是(大图的高度-上下间隔rem-单张图片的高度)/(所有图片数量-1),因为第一张图没有上margin
+                    var m=(height-MARGIN*2-IMG_HEIGHT)/(imgList.length-1)-IMG_HEIGHT;
+                    for(var i=0;i<imgList.length;i++){
+                    // margin是第一张图片上边距+(每个图片的间距*第几张)+(单张图片的高度*第几张)
+                    // 这个值用来定位每张图
+                        if(i===0) changeBorder(imgList[0]);
+                        imgList[i].style.top=MARGIN+m*i+(IMG_HEIGHT*i)+"rem";
+                    }
+                    div.addEventListener("click",clickHandler);
+                    window.addEventListener("resize",resizeHandler);
+                }
+        
+                function clickHandler(e){
+                    if(e.target.nodeName!=="IMG") return;
+                    if(id)return;
+                    id=setTimeout(function(){
+                        clearTimeout(id);
+                        id=0;
+                    },500);
+                    changeBorder(e.target);
+                    this.style.backgroundImage="url("+e.target.src.replace("_icon","")+")";
+                }
+        
+                function changeBorder(elem){
+                    if(pre){
+                        pre.style.border="solid 3px rgba(0,0,0,0)";
+                    }
+                    pre=elem;
+                    pre.style.border="solid 3px #ff9d00";
+                }
+        
+                function resizeHandler(e){
+                    var scale=document.documentElement.clientWidth/screen.width;
+                    document.documentElement.style.fontSize=scale*100+"px";
+                }
+            </script>
+        
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+<input type="text" name="user">
+<input type="text" name="password">
+<input type="radio" name="sex" value="man">
+<input type="radio" name="sex" value="women">
+    <select name="city">
+        <option>黑龙江</option>
+        <option>山西</option>
+        <option>山东</option>
+        <option>北京</option>
+    </select>
+    <input type="file">
+<input type="submit">
+
+</form>
+<script>
+//    var xhr=XMLHttpRequest();
+//    xhr.addEventListener("load",loadHandler);
+//    xhr.open("get","http://10.9.25.226:4009");
+//    xhr.send();
+//    function loadHandler(e){
+//        console.log(xhr.response)
+//    }
+    var form=document.querySelector("form");
+    form.addEventListener("submit",submitHandler);
+    function submitHandler(e){
+        e.preventDefault();
+        var file=document.querySelector("[type=file]")
+//        console.log(file.files)
+        var fd=new FormData(form);
+        ajax(fd)
+
+
+
+//        console.log(fd)
+//        for(var value of fd.values()){
+////            console.log(value)
+//        }
+//   console.log(fd.get("sex"))
+
+//    var obj={};
+//    for(var value of fd){
+//        obj[value[0]]=obj[value[1]];
+//    }
+//    ajax(JSON.stringify(obj));
+}
+
+function ajax(fd) {
+    var xhr=new XMLHttpRequest();
+    xhr.addEventListener("load",loadHandler);
+    xhr.open("POST","http://10.9.25.232:4009");
+//         send  可以发送字符串  FormData  ArrayBuffer   Blob   XML
+//            var arr=new Int16Array()   //ArrayBuffer  二进制数据
+
+    xhr.send(fd);
+}
+
+function loadHandler(e) {
+    console.log(this.response);
+}
+</script>
+</body>
+</html>

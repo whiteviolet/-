@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Box{
+        a=3;
+        constructor(){
+
+        }
+        play(){
+
+        }
+    }
+    let div=document.createElement("div");
+    let obj={a:1,b:2};
+
+    Object.defineProperties(obj,{
+        c:{
+            configurable:true,
+
+            value:3
+        },
+        d:{
+            writable:true,
+            value:4
+        },
+        e:{
+            enumerable:true,
+            value:{a:1}
+        },
+        f:{
+            enumerable:true,
+            value:function(a,b){
+                console.log(a*b);
+            }
+        },
+        g:{
+            enumerable:true,
+            configurable:true,
+            writable:true,
+            value:div
+        }
+
+    });
+    Object.defineProperties(obj.e,{
+        b:{
+            value:new Date()
+        },
+        c:{
+            writable:true,
+            value:[1,2,3,4]
+        },
+        d:{
+            value:{
+                a:1
+            }
+        },
+        e:{
+            value:{
+                a:10
+            }
+        }
+    });
+
+    Object.defineProperties(obj.e.d,{
+        b:{
+            value:new Box()
+        },
+        c:{
+            value:/[a-z].*?/g,
+            configurable:true
+        }
+    });
+    let obj1={};
+//    obj.c=20;
+
+//    Object.defineProperty(obj,"c",{
+//        value:20
+//    })
+//    console.log(obj)
+    cloneObject(obj1,obj);
+    function cloneObject(targetObj,sourceObj){
+        let names=Object.getOwnPropertyNames(sourceObj);
+        for(let i=0;i<names.length;i++){
+            let desc=Object.getOwnPropertyDescriptor(sourceObj,names[i]);
+//            console.log(desc)
+            if(desc.value.constructor===Object){
+                let o;
+                if(desc.value.__proto__.__proto__&&desc.value.__proto__.__proto__.constructor===HTMLElement){
+                    o=document.createElement(desc.value.nodeName);
+                }else if(desc.value.constructor===RegExp){
+                    o=new RegExp(desc.value.source,desc.value.flags);
+                }else{
+                    o=new desc.value.constructor();
+                }
+                Object.defineProperty(targetObj,names[i],{
+                    configurable:desc.configurable,
+                    enumerable:desc.enumerable,
+                    writable:desc.writable,
+                    value:o
+                });
+                cloneObject(o,desc.value)
+            }else if(desc.value.constructor===Function){
+                if(desc.value.length>0){
+                    let arr=desc.value.toString().match(/\((.*?)\)/)[1].split(",");
+                    console.log(arr)
+                    //let str=desc.value.toString().slice(desc.value.toString().indexOf("{")+1,desc.value.toString().lastIndexOf("}"));
+                    let str=desc.value.toString().replace(/\n/g,"");
+                        str=str.match(/\{(.*)\}/)[1].trim();
+                        let fn=new  Function(arr,str);
+                        console.log(fn)
+                        for(let prop in desc.value){
+                            fn[prop]=desc.value[prop];
+                        }
+                    Object.defineProperty(targetObj,names[i],{
+                        configurable:desc.configurable,
+                        enumerable:desc.enumerable,
+                        writable:desc.writable,
+                        value:fn
+                    })
+                }
+            }else{
+                Object.defineProperty(targetObj,names[i],desc);
+            }
+        }
+    return targetObj;
+    }
+    console.log(obj1,obj)
+
+</script>
+</body>
+</html>

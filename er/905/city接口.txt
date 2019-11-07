@@ -1,0 +1,41 @@
+url:10.9.25.226:4010
+method:post
+type:json
+
+1/获取全国省份
+    req:
+    {
+        type:0x01,
+    }
+    res:
+    {
+    list:["北京"，"河北"，"天津"，"山西"...],
+    type:0x01,
+    error:null
+    }
+2/获取指定省份对应的城市
+    req:
+    {
+        type:0x02,
+        province:"河北",
+
+    }
+    res:
+    {
+        list:["石家庄","廊坊","沧州","保定"...],
+        type:0x02,
+        error:null
+    }
+3/获取指定省份指定城市对应的县城
+    req:
+    {
+        type:0x03,
+        province:"河北",
+        city:"承德"
+    }
+    res:
+    {
+        list:["平泉","兴隆","隆华"...],
+        type:0x03,
+        error:null
+    }

@@ -1,0 +1,64 @@
+<!--  --><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+        background-color:#fff;border-collapse: collapse;
+        }
+        td{width:100px;height:50px;border:2px solid red;line-height: 50px;text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var i=0;
+        var sum=0;
+        while(i++<100){
+            
+           
+            sum+=i;
+             
+            console.log(sum);
+        }
+        
+        while(i<100){
+            sum+=i++;
+        } 
+        
+        
+
+        
+        var     str="<table>";
+                i=0
+                while(i++<9){
+                    str+="<tr>"
+
+                var j=0;
+                while(j++<i){
+                    str+="<td>"+(i)+"*"+(j)+"="+(i)*(j)+"</td>"
+                    
+                }
+
+                    str+="</tr>"
+                    
+                    }
+                
+              
+                
+            
+                str+="</table>"
+        document.write(str)
+        
+        
+        
+
+
+
+    </script>
+</body>
+</html>

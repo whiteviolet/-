@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj={
+        //     a:1,
+        //     b:2
+        // }
+        // console.log(obj);               
+        // delete obj.a;
+        // console.log(obj)
+        // var arr=[1,2,3,4,5,6,7,8,9]
+        // delete arr[1];
+        // console.log(arr)
+        //强记  
+        //类数组，不能使用任何数组的方法
+        var divs=document.getElementsByTagName("div");
+        //ES6  将类数组强转为数组
+        var arr=Array.from(divs) 
+        // ES5 
+        var arr=Array.prototype.concat.apply([],divs)
+        var arr=Array.prototype.slice.call(divs)
+        
+        
+        </script>
+</body>
+</html>

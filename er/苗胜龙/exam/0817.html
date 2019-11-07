@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #000000;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <label>姓名</label><input name="name" type="text"></input><span></span><br>
+    <label>年龄</label><input name="age" type="text"></input><span></span><br>
+    <label>电话</label><input name="phone" type="text"></input><span></span><br>
+    <label>邮箱</label><input name="mail" type="text"></input><span></span><br>
+    <button id="bn">添加</button>
+
+    <script>
+        var table, inputs, span;
+        var id = 0;
+        init();
+        function init() {
+            inputs = document.querySelectorAll("input");
+            var bn = document.getElementById("bn");
+            headerTable();
+            for (var i = 0; i < inputs.length; i++) {  //添加input事件,进行正则匹配
+                inputs[i].addEventListener("input", reg);
+            }
+            bn.addEventListener("click", bodyTable);  // 点击添加调用bodyTable函数
+
+        }
+        function headerTable() {  //添加表格头
+            table = document.createElement("table");
+            var tr = document.createElement("tr");
+            for (var i = 0; i <= inputs.length; i++) {
+                var th = document.createElement("th");
+                if (i < inputs.length) th.textContent = inputs[i].name;
+                if (i === inputs.length) th.textContent = "deleted";
+                tr.appendChild(th);
+            }
+            table.appendChild(tr);
+        }
+
+        function bodyTable() {  //点击添加
+            console.log(span[1].innerText);
+            for (var i = 0; i < span.length; i++) {  //若有错误信息则不能添加
+                if (span[i].innerText === "错误")
+                    return;
+            }
+            var tr = document.createElement("tr");
+            for (var i = 0; i <= inputs.length; i++) {
+                var td = document.createElement("th");
+                if (i < inputs.length) td.textContent = inputs[i].value;
+                if (i === inputs.length) {
+                    var bn = document.createElement("button");
+                    bn.textContent = "删除";
+                    bn.addEventListener("click", removeBody);
+                    td.appendChild(bn);
+                }
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        document.body.appendChild(table);
+        function removeBody(e) {     //删除一行
+            this.parentElement.parentElement.remove();
+        }
+
+        function reg(e) {  //正则匹配
+            // console.log(e.target.name);
+            if(id) return;  
+            id = setTimeout(timeHandler,200);
+            // console.log("sss");
+            span = document.querySelectorAll("span");
+            if (e.target.name === "name") {
+                if (/^[\u4e00-\u9fa5a-zA-Z]{2,10}$/.test(inputs[0].value)) {
+                    span[0].textContent = "";
+                } else {
+                    span[0].style.color = "red";
+                    span[0].textContent = "错误";
+                }
+            }
+            if (e.target.name === "age") {
+                if (/^[1-9]$|^[1-9][0-9]$/.test(inputs[1].value)) {
+                    span[1].textContent = "";
+                } else {
+                    span[1].style.color = "red";
+                    span[1].textContent = "错误";
+                }
+            }
+            if (e.target.name === "phone") {
+                if (/^1[3|5|7|8][0-9]{9}$/.test(inputs[2].value)) {
+                    span[2].textContent = "";
+                } else {
+                    span[2].style.color = "red";
+                    span[2].textContent = "错误";
+                }
+            }
+            if (e.target.name === "mail") {
+                if (/^\w+@\w{2,}\.\w{2,4}(\.\w{2,})?$/.test(inputs[3].value)) {
+                    span[3].textContent = "";
+                } else {
+                    span[3].style.color = "red";
+                    span[3].textContent = "错误";
+                }
+            }
+        }
+        function timeHandler(){  //节流
+            clearTimeout(id);
+            id = 0;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function fn(i){
+        //     if(i===1){
+        //         return 1;
+        //  } else {  
+        //     return i*fn(i-1);
+            
+        // }
+
+
+        // }
+       
+        // console.log( fn(10))
+
+        function fn(n,s,m,str){
+            str+="+"+s;
+           var a=s;
+            s=n+s;
+
+            n=a;
+            if(s<m){
+               return fn(n,s,m,str)
+            }
+            console.log(str)
+            
+            return str;
+        }
+        var str= fn(1,1,76," 1")
+        console.log(str)
+
+    </script>
+</body>
+</html>

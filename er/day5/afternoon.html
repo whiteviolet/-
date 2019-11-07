@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background: #ff0;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button id="bn">按钮</button>
+    <div id="div0"></div>
+    <script>
+        var bn=document.getElementById("bn");
+        var div=document.getElementById("div0");
+        i=50;
+        function fn(){
+        
+         i=i+100
+            div.style.left=i+"px"
+
+        }
+        bn.onclick=function(){
+            fn()
+        } -->
+         <button id="bn">开始</button>
+    <div id="div0"></div>
+    <script>
+        var bn=document.getElementById("bn");
+        var div=document.getElementById("div0");
+        var i=50;
+        var bool=true;
+        setInterval(fn,10)
+        // function fn2(){
+        //     setInterval(fn,100)
+        // }
+        
+        function fn(){
+         if(!bool){
+         i++
+            div.style.left=i+"px"
+           
+            }
+            if(i>500&&!bool){
+            div.style.background="red"
+            i+=2
+            div.style.left=i+"px";
+            // fn2();
+        }
+            
+
+        }
+        bn.onclick=function(){
+           bool=!bool
+          if(!bool){ bn.innerHTML="停止"}
+          else{bn.innerHTML="开始"}
+        }
+        
+    </script>
+    
+</body>
+</html>

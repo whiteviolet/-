@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:32px;
+            height:33px;
+            background:url(../img/per.png);
+            position:absolute
+        }
+    </style>
+    
+</head>
+<body>
+    <div></div>
+    <script>
+        // var div=document.createElement("div");
+        // Object.assign(div.style,{
+        //     width:"100px",
+        //     height:"100px",
+        //     backgroundColor:(function(){
+        //         var str="#";
+        //         for(var i=0;i<6;i++){
+        //             str+=Math.floor (Math.random()*16) .toString(16)
+                    
+        //         }
+        //         return str
+        //     })(),
+        //     position:"absolute",
+        //     left:"0",
+        //     top:"0"
+            
+
+            
+        // })
+        // document.body.appendChild(div);
+        //----------一般的
+        // div.addEventListener("keydown",keyHandler);
+        // function keyHandler(e){
+        //    switch(e.keyCode){
+        //    case 37:div.style.left=div.offsetLeft-5+"px";
+         
+        //    break;
+        //    case 38:
+        //    div.style.top=div.offsetTop-5+"px";
+        //    break;
+        //    case 39:
+        //    div.style.left=div.offsetLeft+5+"px";
+        //    break;
+        //    case 40:
+        //    div.style.top=div.offsetTop+5+"px";
+        //    break;
+        // }
+        // }
+        
+//--------------------------色块
+        //  var key;
+        // init();
+        // function init(){
+        //     document.addEventListener("keydown",keyHandler);
+        //     document.addEventListener("keyup",keyHandler);
+        //     setInterval(animation,16)
+
+        // }
+        // function keyHandler(e){
+        //     key=(e.type==="keydown")? e.keyCode:0;
+        //     console.log(e)
+        //     console.log(e.target)
+
+ 
+        // }
+        // function animation(){
+        //     if(!key)return;
+        //     switch(key){
+        //         case 37:
+        //         div.style.left=div.offsetLeft-2+"px";
+        //         break;
+        //         case 38:
+        //         div.style.top=div.offsetTop-2+"px";
+        //         break;
+        //         case 39:
+        //         div.style.left=div.offsetLeft+2+"px";
+        //         break;
+        //         case 40:
+        //         div.style.top=div.offsetTop+2+"px";
+        //         break;
+
+        //         }
+        // }
+        var key=0;
+        var div;
+        var i=0;
+        var time=10;
+        init();
+        function init(){
+             div=document.querySelector("div");
+            document.addEventListener("keydown",keyHandler);
+            document.addEventListener("keyup",keyHandler);
+             setInterval(animation,16)
+
+        }
+        function keyHandler(e){
+            key=e.type==="keydown"?e.keyCode:0;
+            
+            switch(key){
+                case 37:
+                div.style.backgroundPositionY="-33px";
+                break;
+                case 38:
+                div.style.backgroundPositionY="-99px";
+                break;
+                case 39:
+                div.style.backgroundPositionY="-66px";
+                break;
+                case 40:
+                div.style.backgroundPositionY="-0px";
+                break;
+            }  
+             
+
+        }
+        function animation(){
+            if(!key){
+                div.style.backgroundPositionX="0";
+                return;
+            }
+            
+            changeActorAction()
+            ActorMove();
+        }
+    function changeActorAction(){
+        time--;
+        
+        if(time>0) return;
+        // console.log(time)
+        time=10;
+        
+        div.style.backgroundPositionX=-i*32+"px";
+        i++;
+        if(i>3) i=0
+
+    }
+             
+                              
+        function ActorMove(){
+            
+            switch(key){
+                case 37:
+                div.style.left=div.offsetLeft-2+"px";
+                break;
+                case 38:
+                div.style.top=div.offsetTop-2+"px";
+                break;
+                case 39:
+                div.style.left=div.offsetLeft+2+"px";
+                break;
+                case 40:
+                div.style.top=div.offsetTop+2+"px";
+                break;
+
+                }
+            
+            
+
+        }
+       
+
+
+        
+    
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var a=5;
+        // console.log(a>-1 ? 3:"f" );
+        // var b=2;
+        // if(b>3){
+        //     b++;
+        //     console.log(b)
+        // }
+        console.log(Boolean(5<3))
+        var value1=prompt("请输入数字");
+        var type=prompt("请输入运算符");
+        var value2=prompt("请输入数字");
+        if(!isNaN(value1) && !isNaN(value2)){
+            v1=Number(value1);
+            v2=Number(value2)
+                if(type==="+"){
+                    alert(v1+v2)
+                }else if(type==="-"){
+                    alert(v1-v2)
+                    
+                }else if(type==="*"){
+                    alert(v1*v2)
+                }else if(type==="/"){
+                    if(v2===0){
+                        alert("除数不能为0")
+                    }else{
+                        alert(v1/v2)
+                    }
+                }else{
+                    alert("请输入正确运算符")
+
+                }
+        }else{
+            alert("请输出数字")
+        }
+
+
+    </script>
+</body>
+</html>

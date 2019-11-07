@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //    var arr=[4,3,2,2,3,4,5,6,7,8,8] 
+        //    arr.sort()
+        //    console.log(arr)
+        // 函数中参数如果直接赋值等于什么时，就会切断原来参数的引用关系，
+        //如果仅仅修改了对象的属性值，对象的引用关系没有被切断，所以源对象也会被修改
+        /*  function fn(a){
+             a.a=20;
+         }
+      var sum={
+             a:1,
+             b:2
+         };
+         fn(sum);
+            
+         
+         console.log(sum) */
+        //深复制
+        /* function cloneObj(target,source){
+            for(var prop in source){
+                if(typeof source[prop]==="object"&& source[prop]!=="null"){
+                    target[prop]={};
+                    cloneObj(target[prop],source[prop])
+                }else{
+                    target[prop]=source[prop]
+                }
+            }
+        } */
+        //连缀
+        /* var obj={
+            sum:1,
+            setSum:function(a,b){
+                this.sum=a+b;
+                return this;
+            },
+            power:function()
+            {
+               this .a=this.sum*this.sum;
+
+            }
+        }
+        obj.setSum(3,5);
+        obj.power();
+
+        console.log(obj.power) */
+        // 字面量新建法
+        /*  var arr=[1,2,,,34,5,5,,6];
+         console.log(typeof arr) */
+        // 构造函数法
+        /* var arr=new Array("3,")
+        console.log(arr) */
+        //对象创建法创建
+        /* var arr=new Object([1,2,3,5,87,8,9,,8,5]);
+        arr.length=11
+        console.log(arr) */
+        //length
+        // var arr=[1,2,3,,,,4,5,6,7,8,9];
+        // arr[arr.length]=10;
+        // arr.push("z")
+        // console.log(arr.push("z"))
+        // console.log(arr)//向数组尾部添加一个新元素，并且返回数组的新长度
+        // console.log(arr.unshift("l"))
+        // console.log(arr)//向数组头部添加一个元素，并且返回数组的新长度
+
+        // console.log(arr.pop())//删除数组的最尾部元素，并且将删除的内容返回出来
+        // console.log(arr.shift())//删除数组最头部元素，并且将删除的内容返回出去
+        //数组  splice  (开始的位置，要删除的数量，要添加的元素)
+        // console.log(arr.splice(0))
+
+        // console.log(arr) 
+        // console.log(arr.join("1     "))
+        // for( var prop in arr){
+        //     console.log(arr[prop])
+        // }//for in  
+        // console.log(arr.indexOf("1"))   
+        // console.log(arr.indexOf(5,4))
+
+        // console.log(arr.slice(-1,-3))
+
+        // console.log(arr)//将数组中按照指定位置截取元素形成一个新的数组，原数组不变
+        // arr.forEach(function(item,index,arr){
+        //     console.log(item,index,arr)
+        // })//index遍历下标
+        // var arr1=arr.map(function(item,index,arr){
+        //     if(item>6){
+        //         return item+10;
+        //     }
+        //     // console.log(item,index)
+        // })//index遍历下标
+        // console.log(arr1)
+        // var arr1=arr.forEach(function(item,index,arr){
+        //     if(item>6){
+        //        item
+        //     }
+        //     // console.log(item,index)
+        // })//index遍历下标
+        // console.log(arr1)
+        // var arr=[2,4,6,8,10];
+        // var sum=0;
+        // arr.forEach(function(item){
+        //    sum+=item;
+
+        // })
+        // console.log(sum)
+        // var arr=[
+        //     {id:1001,price:16,num:2},
+        //     {id:1002,price:19,num:3},
+        //     {id:1003,price:28,num:5},
+        //     {id:1004,price:45,num:1}
+        // ]
+        // arr.forEach(function(item){
+        //     item.tocal=item.price*item.num;
+        // })
+        // console.log(arr)
+        // console.log(arr.reverse())//倒序
+        // console.log(arr.sort(function(a,b){return b.id-a.id}))
+        //随机四位数
+        // var arr=[];
+        // for(var i=0;i<100;i++){
+        //     arr.push(i)
+        // }
+        // arr.sort(function(){
+        //     return Math.random()-0.5
+        // })
+        // arr.length=4;
+        // console.log(arr.join())
+        // var arr=[1,2,3,4,5,6,7,8,9,10]
+        // var arr=arr.every(function(item){
+        //    return item<10
+        // })
+        // // console.log(arr)//every 有一个条件不满足时，就跳出遍历，并返回false
+        // var arr=[1,2,,334,3,5,-1,66,7];
+        // var arr1=arr.filter(function (item){
+        // return item>5
+        // })
+        // console.log(arr1)
+        // console.log(arr)// 将大于5的筛选出来
+        //   var arr1=  arr.reduce(function(value,item/* ,index,arr */){
+        //         console.log(value,item)
+        //         return value+item
+        // },56)//value第一次进来时，是数组的第0项，第二次以后进来时都是在这个reduce中return 的值
+        //         // var max=arr.reduce(function(value,item){
+        //         //     return value>item?value:item
+        //         // })
+        //         // console.log(max)//比大小
+        // console.log(arr1)
+        //扁平化
+        // var arr=[1,2,3,[4,56,7,8,[3,4,6,343,32],23,3,],2,3,]
+        // var arr1=arr.flatMap(function(item,index,arr){
+        //     return item
+        // })
+        // console.log(arr1)//不能深度
+        // var arr1=[];
+        // arr1=flatMap(arr1,arr);
+        // function flatMap(arr1,arr){
+        //     for(var i=0;i<arr.length;i++){
+        //         if(Array.isArray(arr[i])){
+        //             flatMap(arr1,arr[i])
+        //         }else{
+        //             arr1.push(arr[i])
+        //         }
+        //     }
+        //     return arr1
+        // }
+        // console.log(arr1)// 深度
+        // var arr=[1,5,8,4,654,6856,48,456,]
+        // var arr1=Math.max.apply(null,arr)
+        // console.log(arr1) //比大小
+        var y = 1;
+
+        var x = y = typeof x;
+
+        console.log(x);
+
+
+
+    </script>
+</body>
+
+</html>

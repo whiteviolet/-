@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(Number(true)) //1
+        console.log(Number(false)) //0
+        console.log(Number(undefined)) // NaN
+        console.log(Number(null)) //0
+        console.log(Number(""))  // 0
+        // 强转布尔值
+        console.log(Boolean(true)) //
+        console.log(Boolean(false)) //
+        console.log(Boolean(undefined)) // 
+        console.log(Boolean(Number(5))) //
+        console.log(Boolean(""))  // 
+        var a="我是一个"
+            b=00000
+            console.log(a+b)
+            console.log(30+50+90+"我爱你"+20+23+11+"guofu")
+        // 一元运算符
+        var c;
+        var d=++c;
+        console.log(d)
+        //赋值运算符
+        var e="5";
+        e+=10;
+        console.log(e);
+        // 比较
+        console.log(""==0);
+        console.log(""==false);
+        console.log(null==undefined)
+        console.log(NaN==NaN)
+        console.log(Number(a)==NaN)
+
+        var z="5";
+        if(isNaN(z)){
+            console.log("是的")
+
+        }
+        else{console.log("不是")
+        }
+        
+
+        var r=2000;
+        if(r%4==0 && r%100!==0  || r%400==0){
+           document.write("闰年")
+        }
+        
+        var l=0;
+        if(!l){
+           console.log("好好学习")
+        }
+        
+
+        
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

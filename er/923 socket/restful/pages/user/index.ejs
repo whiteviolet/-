@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>查看会员</title>
+</head>
+<body>
+<%-include ../public/header%>
+欢迎回<%=username%>来！
+<form action="/user" method="get">
+    <input type="text" name="wd" placeholder="请输入用户名或姓名" /> <button type="submit">搜索</button>
+</form>
+<table width="100%" border="1" cellspacing="0" cellpadding="0">
+    <tr style="color:#FFFFFF">
+        <td height="40" align="center" bgcolor="#0099CC">用户名</td>
+        <td align="center" bgcolor="#0099CC">头像</td>
+        <td align="center" bgcolor="#0099CC">密码</td>
+        <td align="center" bgcolor="#0099CC">姓名</td>
+        <td align="center" bgcolor="#0099CC">年龄</td>
+        <td align="center" bgcolor="#0099CC">管理</td>
+    </tr>
+    <%
+        for(var i=0;i<users.length;i++){
+    %>
+    <tr>
+        <td height="40" align="center"><%=users[i].username%></td>
+        <td align="center"><img src="/<%=users[i].head%>" alt="" width="100" height="100"></td>
+        <td align="center"><%=users[i].password%></td>
+        <td align="center"><%=users[i].name%></td>
+        <td align="center"><%=users[i].age%></td>
+        <td align="center"><a href="/user/edit?uid=<%=users[i]._id%>">编辑</a> | <a href="/user/del?uid=<%=users[i]._id%>">删除</a></td>
+    </tr>
+    <%}%>
+    <tr>
+        <td height="40" colspan="5" align="center">
+            <%
+            for(var i=1;i<=pageNum;i++){
+                if(i==page){
+            %>
+            <%=i%>
+            <%}else{%>
+            <a href="/user?page=<%=i%>&wd=<%=wd%>"><%=i%></a>
+            <%
+                }
+            }
+            %>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

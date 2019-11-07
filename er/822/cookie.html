@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var date=new Date();
+    date.setMinutes(date.getMinutes()+1);
+    document.cookie="user=liu;expires="+date.toUTCString();
+    document.cookie="age=30";
+    document.cookie="age=320";
+    var arr=JSON.stringify([1,2,3,4]);
+
+    document.cookie="arr="+arr;
+    var obj={a:1,b:2,c:"yu"};
+    document.cookie="obj="+JSON.stringify(obj);
+    console.log(document.cookie);
+    var str=document.cookie;
+    var arr=str.split(/;\s+?/);
+    var obj={};
+    for(var i=0;i<arr.length;i++){
+        var arr1=arr[i].split("=");
+        console.log(arr1);
+        try {
+            obj[arr1[0]]=JSON.parse(arr1[1]);
+        }catch (e){
+            obj[arr1[0]]=arr1[1];
+        }
+
+
+
+
+    }
+    console.log(obj)
+    console.log(arr)
+//    console.log( getCookie());
+//    function  getCookie() {
+////            var str=document.cookie;
+////            var arr=str.split(/;\s*?/);
+//        var arr=document.cookie.split(/;\s*/);
+//        var obj={};
+//        for(var i=0;i<arr.length;i++){
+//            var arr1=arr[i].split("=");
+//            try {
+//                obj[arr1[0]]=JSON.parse(arr1[1]);
+//            }catch (e){
+//                obj[arr1[0]]=arr1[1];
+//            }
+//        }
+//        return obj;
+//    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

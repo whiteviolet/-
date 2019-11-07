@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000000;
+            margin: auto;
+        }
+        button{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000000;
+            border-radius: 150px;
+            margin: 60px 0 0 100px;
+            padding: 0;
+        }
+        p{
+            width: 300px;
+            height: 100px;
+            border: 1px solid #000000;
+            margin-left:100px ;
+            text-align: center;
+            font-size:50px;
+            margin: 10px 100px;
+            line-height: 100px;
+        }
+        span{
+            font-size: 60px;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button><span>点击抽奖</span></button>
+    <p></p>
+</div>
+<script>
+    var bn=document.querySelector("button");
+    var p=document.querySelector("p")
+    init();
+    function init() {
+        bn.addEventListener("click",clickHandler);
+//        var bn=document.querySelector("button");
+//        var p=document.querySelector("p")
+    }
+    function clickHandler(e) {
+       e.preventDefault();
+        if(!localStorage.arr){
+            localStorage.arr=JSON.stringify([1,2,2,3,3,3,0,0,0,0,0,0,0,0,0,0])
+        };
+        var  arr1= JSON.parse(localStorage.arr);
+        arr1.sort(function () {
+            return Math.random()-0.5
+        })
+//        console.log(arr1);
+        var arr2=arr1.pop();
+        if(arr2===0){
+            p.textContent="谢谢惠顾"
+        }
+        else{
+            p.textContent=arr2+"等奖"
+        }
+        if(arr1.length===0){
+            localStorage.clear()
+        }else{
+            localStorage.arr=JSON.stringify(arr1)
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

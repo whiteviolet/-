@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj1={x:5};
+        var obj2=obj1;
+        obj1.a=obj1={x:6};
+        console.log(obj1.a)  //u
+        console.log(obj1)   //6       
+        console.log("-------------------")
+        console.log(obj2.a)  //
+        console.log(obj2)   //
+        // var a=[1,2,3,4];
+        // var b=a;
+        // b.push(5)
+        // console.log(b)
+ 
+
+
+    </script>
+</body>
+</html>

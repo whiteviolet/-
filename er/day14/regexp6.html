@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<input type="text" id="user" name="user"><span></span>
+<body>
+    <script>
+        // var input=document.querySelector("input");
+        // var id;
+        // input.addEventListener("input",inputHandler);
+        // function inputHandler(){
+        //     if(id) return
+        //     id=setTimeout(timeHandler,500);
+
+        // }
+        // function timeHandler(){
+        //     console.log(input.value);
+        //     clearTimeout(id)
+        //     id=0
+        // }
+
+
+        var input=document.querySelector("input");
+        var id=0;
+        var span=document.querySelector("span")
+        input.addEventListener("input",inputHandler);
+        function inputHandler(){
+            if(id) return;
+            // console.log(id);
+            id=setTimeout(timeHandler,500);
+            
+                 
+        }
+        function timeHandler(){
+           
+        console.log(input.value)
+            if(/^[0-9]$|^[12][0-9]$|^[3][01]$/.test(input.value)){
+                span.textContent="正确";
+                span.style.color="#00F"
+            }else {
+                span.textContent="错误";
+                span.style.color="#f00"
+            }
+           clearTimeout(id);
+            id=0
+        } 
+    </script>
+</body>
+</html>

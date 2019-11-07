@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/Utils.js"></script>
+</head>
+
+<body>
+    <script>
+        var imgCon, dot, bnList, imgList, pre;
+        var srcList = [],
+            position = 0,
+            dict = "left",
+            time = 200,
+            bool = false,
+            autoBool = false,
+            //30次
+            duration = 30;
+        const WIDTH = 1290;
+        const HEIGHT = 430;
+        init();
+        function init() {
+            srcList.push("img/left.png", "img/right.png");
+            for (var i = 1; i < 12; i++) {
+                srcList.push("img/" + i + ".jpg")
+
+            }
+            for (var i = 97; i < 102; i++) {
+                srcList.push("img/" + String.fromCharCode(i) + ".jpg")
+
+            }
+            for (var j = 97; j < 102; j++) {
+                srcList.push("img/" + String.fromCharCode(j) + ".jpeg")
+            }
+            Utils.loadImage(srcList, finishHandler);
+        }
+        function finishHandler(list) {
+            bnList = list.splice(0, 2);
+            imgList = list.map(function (item) {
+                item.style.width = WIDTH + "px";
+                item.style.height = HEIGHT + "px";
+                return item;
+            });
+            var carousel = Utils.ce("div", {
+                width: WIDTH + "px",
+                height: HEIGHT + "px",
+                position: "relative",
+                margin: "auto",
+                overflow: "hidden",
+
+
+            });
+            createImgCon(carousel);
+            createDot(carousel);
+            createBn(carousel);
+            document.body.appendChild(carousel);
+            carousel.addEventListener("mouseenter", mouseHandler);
+            carousel.addEventListener("mouseleave", mouseHandler)
+            // 如果没有将元素放在body时，不能获取offsetWidth 
+            dot.style.left = (WIDTH - dot.offsetWidth) / 2 + "px";
+            changeDot();
+            animation();    
+
+
+        }
+        function createImgCon(parent) {
+            imgCon = Utils.ce("div", {
+                width: WIDTH * 2 + "px",
+                height: HEIGHT + "px",
+                position: "absolute",
+                left: 0
+            });
+            imgCon.appendChild(imgList[0]);
+            parent.appendChild(imgCon);
+        }
+        function createDot(parent) {
+            dot = Utils.ce("ul", {
+                margin: 0,
+                padding: 0,
+                position: "absolute",
+                bottom: "20px",
+
+                listStyle: "none",
+            });
+            for (var i = 0; i < imgList.length; i++) {
+                var li = Utils.ce("li", {
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "8px",
+                    border: "1px solid #ffffff",
+                    float: "left",
+
+                    marginLeft: i === 0 ? 0 : "10px",
+                });
+                dot.appendChild(li);
+
+            }
+            dot.addEventListener("click", dotclickHandler);
+            parent.appendChild(dot)
+
+        }
+        function createBn(parent) {
+            for (var i = 0; i < bnList.length; i++) {
+                Object.assign(bnList[i].style, {
+                    position: "absolute",
+                    top: (HEIGHT - bnList[i].height) / 2 + "px",
+                    left: i === 0 ? "20px" : "none",
+                    right: i === 1 ? "20px" : "none",
+                })
+                bnList[i].addEventListener("click", clickHandler);
+                parent.appendChild(bnList[i])
+            }
+
+        }
+        function createNextImg() {
+            if (dict === "left") {
+                imgCon.appendChild(imgList[position]);
+                imgCon.style.left = "0px";
+
+            } else if (dict === "right") {
+                imgCon.insertBefore(imgList[position], imgCon.firstElementChild)
+                imgCon.style.left = -WIDTH + "px"
+            }
+            changeDot();
+            bool = true;
+        }
+        function changeDot() {
+            if (pre) {
+                pre.style.backgroundColor = "rgba(0,0,0,0)";
+            }
+            pre = dot.children[position];
+            pre.style.backgroundColor = "rgba(255,0,0,0.6)"
+        }
+        function clickHandler(e) {
+            if (bool) return;
+            if (bnList.indexOf(this) === 0) {
+                dict = "right";
+                position--;
+                if (position < 0) position = imgList.length - 1;
+
+            } else {
+                dict = "left";
+                position++;
+                if (position > imgList.length - 1) position = 0;
+            }
+            createNextImg();
+
+
+        }
+        function dotclickHandler(e) {
+            if (bool) return;
+            if (e.target.nodeName !== "LI") return;
+            var arr = Array.from(dot.children);
+            var index = arr.indexOf(e.target);
+            if (index === position) return;
+            if (index > position) {
+                dict = "left";
+
+            } else {
+                dict = "right";
+            }
+            position = index;
+            createNextImg();
+        }
+        function mouseHandler(e) {
+            if (e.type === "mouseenter") {
+
+                autoBool = false;
+            } else if (e.type === "mouseleave") {
+                autoBool = true;
+                time = 200;
+            }
+        }
+        function animation() {
+            requestAnimationFrame(animation);
+            playCarousel();
+            autoplay();
+        }
+        function autoplay() {
+            if (!autoBool) return;
+            time--;
+            if (time > 0) return;
+            time = 200;
+            var evt = new MouseEvent("click");
+            bnList[1].dispatchEvent(evt);
+        }
+        function playCarousel() {
+            if (!bool) return;
+            if (dict === "left") {
+                if (imgCon.offsetLeft <= -WIDTH) {
+                    bool = false;
+                    imgCon.firstElementChild.remove();
+                    imgCon.style.left = "0px";
+                    return;
+                }
+                imgCon.style.left = imgCon.offsetLeft - (WIDTH / duration) + "px";
+            } else if (dict === "right") {
+                if (imgCon.offsetLeft >= 0) {
+                    bool = false;
+                    imgCon.lastElementChild.remove();
+                    imgCon.style.left = "0px";
+                    return;
+                }
+                imgCon.style.left = imgCon.offsetLeft + (WIDTH / duration) + "px";
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

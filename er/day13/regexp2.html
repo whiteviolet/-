@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+                console.log("aaaccddaa".match(/a{3}/g)); //{n} 重复的次数
+                console.log("aaaaaaaaa".match(/a{3}/g)); //{n} 重复的次数
+                console.log("aaaaaaaa".match(/a{3}/g)); //{n} 重复的次数
+                // \d{4}-\d{2}-\d{2}
+                // \d{4}(-\d{2}){2}
+        
+                console.log("aaaaa".match(/g{0}/g));//a{0}===""  任何内容{0}都是空字符
+                console.log("aaaa".split(""));
+        
+        
+                // 贪婪匹配  找最大的,找过不能再找
+                console.log("aaaaaaaaa".match(/a{2,4}/g))//最少2次,最多重复4次
+                console.log("aaaaaaaaa".match(/a{1,4}/g))//最少1次,最多重复4次
+                console.log("aaaaaaaaa".match(/a{0,4}/g))//最少0次,最多重复4次
+                console.log("aaaaaaaaa".match(/a{0,1}/g))//最少0次,最多重复1次
+                console.log(/^colors{0,1}$/.test("color"));
+                console.log(/^colors{0,1}$/.test("colors"));
+                console.log(/^colors{0,1}$/.test("colorf"));
+                console.log(/colors{0,1}/.test("color"));
+                console.log(/colors{0,1}/.test("colors"));
+                console.log(/colors{0,1}/.test("colorf"));
+                var str="abca";
+                var reg=/^a$/;
+                console.log(reg.test(str))
+                // .*?                                                                                            
+                // .+?
+            </script>-
+        
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var inputs, table, span;
+        var id;
+        var arr = ["姓名:", "年龄:", "电话:", "邮箱:"];
+        var arr1 = ["name", "age", "phone", "mail", "deleted"];
+        init();
+        function init() {
+            var ul = document.createElement("ul");
+            for (var i = 0; i < arr.length; i++) {
+                var li = document.createElement("li");
+                Object.assign(li.style, {
+                    listStyle: "none"
+                })
+                var label = document.createElement("label");
+                var input = document.createElement("input");
+                span = document.createElement("span");
+                Object.assign(span.style, {
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "5px"
+                })
+
+                input.name = arr[i];
+                label.textContent = arr[i];
+                li.appendChild(label);
+
+                li.appendChild(input);
+                li.appendChild(span);
+                ul.appendChild(li);
+            }
+            document.body.appendChild(ul)
+            var bn = document.createElement("button")
+            bn.textContent = "添加";
+            document.body.appendChild(bn);
+            inputs = document.querySelectorAll("input");
+            bn.addEventListener("click", clickHandler);
+            input.addEventListener("input", inputHandler);
+ console.log(inputs.value)
+            createTable();
+        }
+        //设立一个obj对象 把属性和属性值分别对应input的label和里面的value
+        //之后按照obj判定正则
+          // 老师 但是我获取不到input里的value，
+        // 表单事件  正则
+        //  节流
+       
+        function inputHandler(e){
+            if(id) return;
+            
+            console.log(this.value)
+            id=setTimeout(timeHandler,500);
+            
+                 
+        }
+        function timeHandler(){
+           
+        console.log(e.target.value)
+         //    switch(e.target/* 表单name */){
+        //        case name:
+        //        if(/^\d+$/.test(e.target.value)){
+        //     span.style.backgroundColor = "green";
+        //    }else{
+        //     span.style.backgroundColor = "red";  
+        //    } 
+        //    break;
+        //    case age:
+        //        if(e.target.value>0&&e.target.value<100){
+        //         span.style.backgroundColor = "green";
+        //     }else{
+        //     span.style.backgroundColor = "red";  
+        //    } 
+        //    break;
+        //    case phone:
+        //        if(/^1[3|5|7|9][\d]{9}$/.test(e.target.value)){
+        //         span.style.backgroundColor = "green";
+        //    }else{
+        //     span.style.backgroundColor = "red";
+
+        //        }
+        //        break;
+        //        case mail:
+        //            if( /^\w+@\w{2,}\.\w{2,4}(\.\w{2,})?$/.test(e.target.value)){
+        //             span.style.backgroundColor = "green";
+        //    }else{
+        //     span.style.backgroundColor = "red";
+
+        //            }
+
+        //    }
+            
+           clearTimeout(id);
+            id=0
+        } 
+
+      
+           
+       
+        
+        //添加点击
+        function clickHandler(e) {
+
+
+            createTd()
+
+        }
+        // 点击删除
+        function bnclickHandler(e) {
+            this.parentElement.parentElement.remove();
+
+
+        }
+        //  表头
+        function createTable() {
+            table = document.createElement("table");
+            Object.assign(table.style, {
+                borderCollapse: "collapse",
+                border: "2px solid #000"
+
+            })
+            var tr = document.createElement("tr");
+
+            for (var j = 0; j < arr1.length; j++) {
+                var th = document.createElement("th");
+                Object.assign(th.style, {
+                    border: "1px solid #000",
+                    width: "200px",
+                    height: "50px"
+                })
+                th.textContent = arr1[j];
+                tr.appendChild(th);
+            }
+            table.appendChild(tr);
+
+
+        }
+        //数据
+        function createTd() {
+            var tr1 = document.createElement("tr");
+            for (var i = 0; i < inputs.length; i++) {
+                var td = document.createElement("td");
+                Object.assign(td.style, {
+                    border: "1px solid #000",
+                    width: "200px",
+                    height: "50px",
+                    textAlign: "center"
+                })
+
+                td.textContent = inputs[i].value;
+
+                tr1.appendChild(td)
+            }
+            var td1 = document.createElement("td");
+
+
+            Object.assign(td1.style, {
+                border: "1px solid #000",
+                width: "200px",
+                height: "50px",
+                textAlign: "center"
+            });
+            var bn0 = document.createElement("button");
+            bn0.textContent = "删除";
+
+            td1.appendChild(bn0);
+            tr1.appendChild(td1);
+            table.appendChild(tr1)
+            bn0.addEventListener("click", bnclickHandler)
+        }
+
+
+
+        document.body.appendChild(table);
+
+
+    </script>
+</body>
+
+</html>

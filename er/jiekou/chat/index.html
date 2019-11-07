@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>聊天室</title>
+    
+</head>
+<body>
+<script src="../publish/js/jquery.js"></script>
+<script src="../publish/js/socket.js"></script>
+<script>
+    $(function () {
+        var socket=io("ws://localhost:3355");
+        socket.emit("all",{uid:1,msg:"大家好"});
+        socket.on("message",function(data){
+            console.log(data)
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:610px;
+            margin:auto;
+            position:absolute;
+            left:0;
+            top:250px;
+            right:0;
+            button:0;
+        }
+        div input{
+            width:500px;
+            height:40px;
+            border:1px solid #000000;
+            line-height: 40px;
+        }
+        div button{
+            background-color: blue;
+            width:100px;
+            border:1px solid #000000;
+            color:white;
+            height:44px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input type="text"><button>点一下就知道</button>
+    </div>
+    <script>
+        init();
+        function init(){
+            var input=document.querySelector("input");
+            input.addEventListener("input",inputHandler);
+        }
+        function inputHandler(e){
+            id=setTimeout(function(){
+                
+            },500)
+        }
+    </script>
+</body>
+</html>

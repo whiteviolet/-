@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 800px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #000000;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <label>姓名：</label><input type="text" name="user"><br>
+    <label>年龄：</label><input type="text" name="age"><br>
+    <label>性别：</label><input type="radio" name="ral" value="男">男
+                        <input type="radio" name="ral" value="女">女<br>
+    <label>邮箱：</label><input type="text" name="email"><br>
+    <label>电话：</label><input type="text" name="phone"><br>
+    <button>添加</button>
+        
+    <script>
+        // var arr=["北京","上海","哈尔滨","太谷","寿光"]
+        // var ul=document.createElement("ul");
+        // for(var i=0;i<arr.length;i++){
+        //     var li=document.createElement("li");
+        //     var a=document.createElement("a");
+        //     a.textContent=arr[i];
+        //      li.appendChild(a);
+             
+        //     ul.appendChild(li);
+        //    a.href="https://WWW.jd.com"
+        // }
+        // document.body.appendChild(ul)
+        var bn,inputs,table,obj;
+         init();
+         function init(){
+             bn=document.querySelector("button");
+             inputs=document.querySelectorAll("input");
+             bn.addEventListener("click",clickHandler);
+             createTable();
+
+         }   
+
+         function createTable(){
+             var arr=[];
+             for(i=0;i<inputs.length;i++){
+                 arr.push(inputs[i].name);
+                 // 去重
+                 arr=distinct(arr);
+                 console.log(arr)
+             }
+
+         table=  document.createElement("table");
+           var tr= document.createElement("tr");
+           
+           
+           
+           for(var j=0;j<arr.length;j++ ){
+            var th=document.createElement("th");
+            th.textContent=arr[j];
+            tr.appendChild(th);
+           }
+
+
+
+           table.appendChild(tr);
+
+            //  document.body.appendChild(table)
+
+
+         }
+
+
+
+         function distinct(arr){
+             var arr1=[];
+             for(var j=0;j<arr.length;j++){
+                 if(arr1.indexOf(arr[j])<0)  arr1.push(arr[j]);
+
+
+             }
+             return arr1;
+         }
+
+        //  function clickHandler(e){
+        //      var obj={};
+        //      obj[inputs[i].name] = inputs[i].value;
+
+
+        //  }   
+         function clickHandler(e) {
+           var  obj = {};
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].name === "ral" && !inputs[i].checked) continue;
+                obj[inputs[i].name] = inputs[i].value;
+                //  console.log(inputs[i].name,inputs[i].value);
+            }
+           fn();
+console.log(obj)
+        }
+
+        function fn(){
+            
+            var tr1=document.createElement("tr")
+            for(var i=0;i<inputs.length;i++){
+                var td=document.createElement("td");
+                if (inputs[i].name === "ral" && !inputs[i].checked) continue; 
+                td.textContent=inputs[i].value;
+                tr1.appendChild(td);
+                table.appendChild(tr1)
+                
+            }
+        }
+    document.body.appendChild(table)
+    
+    
+    </script>
+</body>
+</html>

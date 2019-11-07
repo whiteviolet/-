@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var str="catcbtdogcab";
+        console.log(str.match(/cat|dog/));//或者查找
+        console.log(str.match(/cat|dog|/g)); //|后面没有内容代表""
+        console.log(str.match(/cat||dog/g)); //|后面没有内容代表"",这个优先查找了空字符串
+
+
+
+         //群组
+        // 从里到外,从先到后的顺序   分别用 $1-$9
+        console.log("abcdefab".match(/ab(cd)/g));
+        console.log("abcdefab".replace(/ab(cd)/,"**$1"));
+        console.log("18617854321".replace(/(\d{3})(\d{4})(\d{4})/,"$1****$3"));
+        console.log("2[abc]".match(/\d+\[(\w+?)\]/))
+        console.log("18617854321".match(/(\d{3})(\d{4})(\d{4})/));
+
+          // ^起始 $结束  /^      $/
+        // 如果使用了起始符和结束符,就不在使用全局g
+        console.log("1abcde".match(/1ab/))
+        console.log("1abcde".match(/e$/g))
+
+
+
+    
+    </script>    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 通配符.
+        console.log("catdog".match(/cat/));
+        console.log("catdogcat".match(/cat/g));
+        console.log("catdogcot".match(/cat/g));
+        console.log("catdogact".match(/cat/g));
+        console.log("catdogcAt".match(/cat/ig));
+
+
+
+        console.log("catdogc1t".match(/c.{1}t/g));
+        console.log("catdogc.t".match(/c\.t/g)); // \.  将.通配符转换为字符点
+        console.log("catdogc\.t".match(/c\.t/g)); // \.  将.通配符转换为字符点
+        console.log("catdogc\nt".match(/c\nt/g)); // 
+
+        console.log("catdogc\\t".match(/c\\t/g));
+
+
+
+
+
+         // 字符类 []内容只能代表一个字符
+        console.log("catcotcdt".match(/c[ao]t/g))
+        console.log("catcotcdt".match(/c[aoo]t/g));//重复没有任何意义
+        console.log("abcde1234asdier1245".match(/[12345]/g))
+        console.log("abcde1234asdier1245".match(/[1-5]/g));//从什么到什么
+        console.log("abcde1234asdier1245".match(/[0-9]/g));//从什么到什么
+        console.log("abcde1234aSDier1245".match(/[a-z]/g));//从什么到什么
+        console.log("abcde1234aSDier1245".match(/[a-zA-Z]/g));//从什么到什么
+        console.log("abcde1234aSDier1245".match(/[A-z]/g));//不允许写的
+        console.log("abcde1234aSDier1245".match(/[a]/g));//两个以下的没有任何意义等同于一个a
+        console.log("abcde1234aSDier1245".match(/[.]/g));//.一旦被写在[]中就变成字符.,不具备通配符作用
+        console.log("abcde1234aSDier1245".match(/[\[\]]/g));//判断是否有[]字符
+        console.log("abcde1234aSDier1245".match(/[1-31]/g));//1,2,3,重复了1,中扩中只能代表一个字符
+
+        console.log("2019-08-07".match(/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/));
+        
+        console.log(/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/.test("2019-08-07"))
+         console.log("abcdef12".match(/[^cd]/g));//反义字符类
+        console.log("abcdef1^".match(/[c^d]/g));//如果将^不是写在[]的最前面,他就代表一个字符^
+
+
+</script>
+
+</body>
+</html>

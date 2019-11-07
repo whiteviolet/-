@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<form action="http://10.9.25.226:4005" method="get">-->
+<!--<input type="text" name="user"><br>-->
+<!--<input type="text" name="age"><br>-->
+<!--<button>提交</button>-->
+<!--</form>-->
+<script>
+    var obj={user:"liuyuhang",age:17};
+    ajax(obj);
+    function ajax(obj){
+    var str="";
+    for(var prop in obj){
+        str+=prop+"="+obj[prop]+"&";
+    }
+    str=str.slice(0,-1);
+//    console.log(str)
+    var xhr=new XMLHttpRequest();
+    xhr.addEventListener("load",loadHandler);
+    xhr.open("GET","http://10.9.25.226:4007?"+str);
+    xhr.send();
+    }
+    function loadHandler(e){
+        console.log(this.response)
+    }
+</script>
+
+</body>
+</html>

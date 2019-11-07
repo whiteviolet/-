@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*//    var a=3;
+//    console.log(a.__proto__);
+    class Box{
+        constructor(){
+
+    }
+        a=10;
+        static a=1;
+        play(){
+//            Box.a++;
+//            this.a++
+//            console.log(Box.a,this.a)
+
+        }
+        static play(){
+             Box.a++;
+            this.a++
+            console.log(Box.a,this.a)
+        }
+
+}
+var b=new Box();
+//console.log(Box.a);
+b.a=100;
+
+
+
+//console.log(b)
+//console.log(Box.a)
+    Box.play();
+    Box.play();
+    Box.play();
+    Box.play();
+//    console.log(Box.a)
+//Box.paly();*/
+ //   <--------------------------------------------->
+//function Box() {
+//
+//            console.log(this);
+//}
+//        给类添加静态属性和方法
+//Box.a=10;
+//Box.play=function () {
+//
+//};
+
+//        给类别添加动态属性和方法
+//Box.prototype.a=20;
+//Box.prototype.play=function () {
+//    console.log(this);
+//};
+
+
+//        Box();//执行函数,this是window
+
+//        var b=new Box();//函数使用new的方式,就可以完成对于该类别的实例化
+//        这里把Box函数变成了类 ,this是new出的对象b
+
+//        prototype是原型  针对类  它是指类别动态属性和方法集合
+//        __proto__是原型链  针对对象
+//        只有类的原型prototype上面描述的属性和方法,对象的__proto__中才会有该属性和方法
+
+
+
+
+//    Array.prototype.filter1=function(fn){
+//        var arr=[];
+//        for(var i=0;i<this.length;i++){
+//
+//            if(fn (this[i])){
+//                arr.push(this[i]);
+//            }
+//            return arr;
+//
+//        }
+//
+//    }
+//    var arr=[1,2,2,4,5,5,67,5,7,8954,8,5,4];
+//    var arr1=arr.filter1(function(t){
+//        return t>6;
+//})
+//    console.log(arr1)
+    Array.prototype.sort1=function(fn){
+        var bool=false;
+        if(fn===undefined){
+            bool=true
+        }
+        var len=this.length;
+        while(len>0){
+
+            for(var j=0;j<len-1;j++){
+                var value;
+                if(bool){
+                    value=String(this[j]).charCodeAt(0)>String(this[j+1]).charCodeAt(0)? 1:-1;
+
+                    }else{
+                    value=fn(this[j],this[j+1])
+                }
+                if(value>0){
+                    var a;
+                    a=this[j+1];
+                    this[j+1]=this[j];
+                    this[j]=a
+                }
+            }
+            len--;
+        }
+        return this;
+    }
+    var arr=[1,22,3,4,5,5,6,2,1,7,25,4,2,3,1,4]
+arr.sort1(function(a,b){
+    return a-b;
+})
+    console.log(arr)
+</script>
+</body>
+</html>

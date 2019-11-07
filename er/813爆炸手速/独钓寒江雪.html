@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/Utils.js"></script>
+</head>
+<body>
+    <div></div>
+    <script>    
+    //  var img=new Image();
+    //  img.src="img/golf0.jpg";
+    //  img.offsetWidth="10px"
+    //  document.body.appendChild(img)
+    //  console.log(img.offsetWidth)
+    var arr=[];
+        for(var i=0;i<72;i++){
+            arr.push("img/golf"+i+".jpg");
+        }
+
+//         document.addEventListener("loadFinish",finishHandler)
+
+// function finishHandler(e){
+//     console.log(e.list)
+// }
+//  var img=Utils.ce("img")
+//  document.body.appendChild(img) 
+        //  Utils.loadImage(arr);
+         Utils.loadImage(arr,finisHandler);
+
+        function finisHandler(list){
+            console.log(list);
+        }
+//---------------预加载
+// var arr=[];
+//         var num=0;
+//         loadImage();
+//         function loadImage(){
+//             var img=new Image();
+//             img.src="./img/golf0.jpg";
+//             img.addEventListener("load",loadHandler);
+//             document.body.appendChild(img)
+//         }4
+
+//         function loadHandler(e){
+//             arr.push(this.cloneNode(true));
+//             num++;
+//             if(num>71){
+//                 this.removeEventListener("load",loadHandler);
+//                 for(var i=0;i<arr.length;i++){
+//                     console.log(arr[i].src);
+//                 }
+//                 return;
+//             }
+//             this.src="./img/golf"+num+".jpg";
+            // var div=document.querySelector("div")
+            
+        // }
+    
+
+
+    </script>
+</body>
+</html>

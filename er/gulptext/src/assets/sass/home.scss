@@ -1,0 +1,42 @@
+//@import "public";
+$r:300px;
+.box{
+  width:$r;
+  height:$r;
+  background-color:#FF0000;
+
+  .box3{
+    width:100px;
+    height:100px;
+    background-color:#FF00FF;
+  }
+}
+.box2{
+  width:$r;
+  height:$r;
+  background-color:#0000FF;
+  border:{
+    style:solid;
+    width:3px;
+    color:#FF0000;
+  }
+}
+.hello{
+  font-size:20px;
+  color:#FF0000;
+  &.active{
+    color:#0000FF;
+  }
+}
+@mixin fontColor($color){
+  color:$color;
+}
+.font1{
+  @include fontColor(#FF0000)
+}
+.font2{
+  @include fontColor(#FFFFFF)
+}
+.box3{
+  @extend .box
+}

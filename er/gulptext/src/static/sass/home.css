@@ -1,0 +1,1 @@
+.box,.box3{width:300px;height:300px;background-color:red}.box .box3,.box3 .box3{width:100px;height:100px;background-color:#F0F}.box2{width:300px;height:300px;background-color:#00F;border-style:solid;border-width:3px;border-color:red}.hello{font-size:20px;color:red}.hello.active{color:#00F}.font1{color:red}.font2{color:#FFF}

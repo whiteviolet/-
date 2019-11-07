@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj1 = {
+            init:function(){
+                document.addEventListener("send1",this.sendHandler1)
+            },
+            sendHandler1:function(e){
+                var evt=new Event("send2");
+                document.dispatchEvent(evt)
+                
+                evt. a=e.a-500; 
+                console.log(evt.a)
+                //   console.log(e.a)
+            }
+
+
+        };
+        var obj2={
+             init:function(){
+                document.addEventListener("send2",this.sendHandler2)
+                 var a=2000;
+                 var evt=new Event("send1");
+                 evt.a=a;
+                 document.dispatchEvent(evt);
+                 
+
+             },
+             sendHandler2:function(e){
+                 console.log(e.a)
+             }
+
+        }
+        obj1.init();
+        obj2.init();
+       
+
+
+
+    </script>
+</body>
+
+</html>

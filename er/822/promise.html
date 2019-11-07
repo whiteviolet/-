@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+//           // Promise是异步加载
+//        var a=0;
+//           var pro=new Promise(promiseHandler);
+//
+//           function promiseHandler(resolve,reject) {
+//    //            成功执行resolve
+//    //           失败执行reject
+//               if(a>0){
+//                   resolve();
+//               }else{
+//                   reject();
+//               }
+//           }
+//
+//          pro.then(function () {
+//              console.log("aaa");
+//          },function () {
+//                console.log("bbb");
+//          })
+//    for(var i=0;i<10;i++){
+//        console.log(i)
+//    }
+//
+//for(let i=0;i<10;i++){
+//    console.log(i)
+
+    for(var i=0;i<10;i++){
+        setTimeout(function (i) {
+            console.log(i);//局部
+        },0,i);
+    }
+for(var i=0;i<10;i++){
+     setTimeout(function () {
+         console.log(i);//全局
+     },0);
+ }
+for(let i=0;i<10;i++){
+    setTimeout(function () {
+        console.log(i);//全局
+    },0);
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

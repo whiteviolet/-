@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+
+<script>
+//    localStorage.use="liu";
+//    localStorage.use="miao";
+//   console.log(localStorage.age="25") ;
+//   console.log(localStorage.getItem("use"));
+//   console.log(localStorage.use);
+//   localStorage.setItem("k","aaa");
+//    localStorage.removeItem("use");
+////    localStorage.clear(); //清除所有
+//    var arr=[1,2,3,6,5];
+//    localStorage.arr=JSON.stringify(arr);
+//    console.log(localStorage.getItem("arr"));
+//    var obj={a:1,b:2}
+//    localStorage.obj=JSON.stringify(obj);
+//    console.log(localStorage.getItem("obj"));
+//    console.log(JSON.parse(localStorage.obj));
+//    var bn=document.querySelector("button");
+//    bn.addEventListener("click",clickHandler);
+//    function clickHandler(e){
+//        if(!localStorage.arr){
+//            localStorage.arr=JSON.stringify([]);
+//        }
+//        var arr=JSON.parse(localStorage.arr);
+//        var a=Math.floor(Math.random()*10);
+//        arr.push(a);
+//       localStorage.arr=JSON.stringify(arr);
+//   }
+//    console.log(localStorage.arr)
+////    localStorage.cler()a
+//document.write(localStorage.arr);
+    var arr=[];
+    for(var i=0;i<10;i++){
+        arr.push(0)
+    }
+    for(var i=0;i<1;i++){
+        arr.push(1)
+    }
+    for(var i=0;i<2;i++){
+        arr.push(2)
+    }
+    for(var i=0;i<5;i++){
+        arr.push(3)
+    }
+    arr.sort(function(){
+        return Math.random()-0.5
+    })
+    console.log(arr)
+    localStorage.arr=JSON.stringify(arr);
+    var bn=document.querySelector("button");
+    bn.addEventListener("click",clickHandler);
+    function clickHandler(e){
+        localStorage.arr=JSON.stringify(arr);
+        arr=JSON.parse(localStorage.arr);
+        var div=document.querySelector("div");
+        switch(arr.shift()){
+            case 0:
+                div.textContent="再接再厉";
+                break;
+            case 1:
+                div.textContent="一等奖";
+                break;
+            case 2:
+                div.textContent="二等奖";
+                break;
+            case 3:
+                div.textContent="三等奖";
+                break;
+            default:
+                div.textContent="今日次数用光，是否充值"
+        }
+       }
+
+
+
+
+</script>
+
+</body>
+</html>

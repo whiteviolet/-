@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var div=document.createElement("div");
+        Object.assign(div.style,{
+            width:"50px",
+            height:"5000px",
+            backgroundColor:"red",
+            border:"1px solid #000000",
+            padding:" 6px",
+            // margin:"7px",
+            overflow:"auto"
+        });
+        
+       div.textContent="什么是好，什么是对，什么是善，什么是正，什么是修养，什么是妖";
+
+        document.body.appendChild(div);
+
+
+        //  var div=document.createElement("div");
+        // Object.assign(div.style,{
+        //     width:'50px',
+        //     height:"5000px",
+        //     backgroundColor:"red",
+        //     padding:"5px",
+        //     margin:"10px",
+        //     overflow:"auto",
+        //     border:"1px solid #000000"
+        // });
+        // div.textContent="奥斯卡就打算叫大神快来加达拉斯加大了对加拉斯空当接龙"
+        // document.body.appendChild(div);
+
+        console.log(div.clientWidth)//62
+
+        console.log(div.clientHeight)//62
+        console.log(div.offsetHeight)//64
+        console.log(div.offsetWidth)//64
+        console.log(div.scrollWidth)//62//45
+        console.log(div.scrollHeight)//62//369
+        console.log(document.documentElement.clientWidth,document.documentElement.clientHeight)
+        console.log(document.body.clientWidth,document.body.clientHeight)
+        // console.log(outerWidth,outerHeight);
+        console.log(document.documentElement.offsetWidth,document.documentElement.offsetHeight);
+        console.log(document.body.offsetWidth,document.body.offsetHeight);
+        console.log(document.documentElement.scrollWidth,document.documentElement.scrollHeight);
+        console.log(document.body.scrollWidth,document.body.scrollHeight)  
+        var i=[2];
+        console.log( typeof  typeof  typeof i)
+    </script>
+</body>
+</html>

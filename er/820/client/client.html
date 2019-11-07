@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*给form表单一个边框*/
+        form {
+            width: 800px;
+            margin: auto;
+            border: 1px solid #000;
+        }
+        h2{
+            text-align:center;
+        }
+        /*给每个div一个差不多居中的位置，*/
+        form div{
+            margin-left:200px;
+            font-size:25px;
+
+
+        }
+
+        .sex~label{
+            margin-left:20px;
+        }
+        form input{
+            font-size:25px;
+            margin-bottom: 20px;
+            margin-left:20px;
+        }
+        /*找到最后的div，设置样式，清除之前的margin*/
+        form>div:last-of-type{
+            text-align:center;
+            margin-left:0;
+
+        }
+        /*让体检按钮和重置按钮分开一个距离*/
+        form>div:last-of-type>input:last-of-type{
+            margin-left:100px;
+        }
+        /*男女性别单选框一个尺寸，
+        */
+        [type=radio]{
+            width:15px;
+            height:15px;
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+<form action="http://10.9.25.226:1215/index.php"  method="post">
+    <h2>用户注册系统</h2>
+    <div><label for="user">用户名：</label><input type="text" id="user" name="user"></div>
+    <div><label for="password">密&emsp;码：</label><input type="password" id="password" name="password"></div>
+    <div><label for="name">昵&emsp;称：</label><input type="name" id="name" name="name"></div>
+    <div>
+        <label class="sex">性&emsp;别：</label>
+        <label for="man">男</label>
+        <input type="radio"  id="man" name="sex" value="男" checked>
+        <label for="woman">女</label>
+        <input type="radio"  id="woman" name="sex" value="女">
+    </div>
+    <div><label for="age">年&emsp;龄：</label><input type="text" id="age" name="age"></div>
+    <div><label for="tel">电&emsp;话：</label><input type="text" id="tel" name="tel"></div>
+    <div><label for="email">邮&emsp;箱：</label><input type="text" id="email" name="email"></div>
+    <div>
+        <input type="submit">
+        <input type="reset">
+    </div>
+
+</form>
+
+</body>
+</html>

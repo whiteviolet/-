@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            width:50px;
+            height:50px;
+            background:red;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div class="con">
+            <div class="a">aaa</div>
+            <div class="b">bbb</div>
+            <div class="c">ccc</div>
+        </div>
+        <ul>
+            <li class="aa">苗胜龙</li>
+            <li class="bb">刘珩</li>
+            <li class="cc">王允建</li>
+            <li class="dd">陈志岩</li>
+        </ul>
+    </div>
+    <p></p>
+    <button>按钮</button>
+
+
+
+    <div class="col" style="width:50px ;height:50px ; background-color:red"></div>
+    <div class="col1" width="50"   height="50"  background-color="blue" > </div>
+
+
+
+
+    <img src="./timg1.jpg" width=100>
+
+    <script>
+
+//        $(function(){
+////            console.log($("#wrap"));
+////            console.log($(".con").children())
+//            console.log($(".cc").siblings(""))
+//        })
+//        $("button").click(function(){
+//            $("p").html("Hello <b>world</b>!")
+//})
+//    $("button").click(function(){
+//        $("p").text("Hello <b>world</b>!")
+//    })
+        $("button").click(function(){
+//            $(".col").attr("width","50");
+//            $(".col").attr("height","50");
+console.log($("p"))
+            $("img").prop("width","200");
+
+        })
+    </script>
+</body>
+</html>

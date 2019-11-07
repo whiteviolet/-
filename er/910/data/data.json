@@ -1,0 +1,25 @@
+
+[
+  {"province":"河南省","city":"郑州市","block":"A区","name":"张三"},
+  {"province":"河北省","city":"石家庄市","block":"B区","name":"王一"},
+  {"province":"吉林省","city":"长春市","block":"C区","name":"张二"},
+  {"province":"河南省","city":"周口市","block":"B区","name":"王一"},
+  {"province":"河北省","city":"邯郸市","block":"B区","name":"张二"},
+  {"province":"山西省","city":"太原市","block":"A区","name":"李三"},
+  {"province":"山西省","city":"太原市","block":"A区","name":"张二"},
+  {"province":"河南省","city":"安阳市","block":"C区","name":"张一"},
+  {"province":"河南省","city":"郑州市","block":"C区","name":"李一"},
+  {"province":"山西省","city":"运城市","block":"B区","name":"张二"},
+  {"province":"吉林省","city":"通化市","block":"A区","name":"李三"},
+  {"province":"河南省","city":"郑州市","block":"A区","name":"张二"},
+  {"province":"吉林省","city":"长春市","block":"C区","name":"王二"},
+  {"province":"河南省","city":"周口市","block":"B区","name":"李一"},
+  {"province":"河北省","city":"邯郸市","block":"B区","name":"张二"},
+  {"province":"山西省","city":"太原市","block":"A区","name":"张三"},
+  {"province":"山西省","city":"太原市","block":"A区","name":"张二"},
+  {"province":"河南省","city":"安阳市","block":"C区","name":"李一"},
+  {"province":"河南省","city":"郑州市","block":"C区","name":"张一"},
+  {"province":"山西省","city":"运城市","block":"B区","name":"李二"},
+  {"province":"吉林省","city":"通化市","block":"A区","name":"李三"},
+  {"province":"河南省","city":"郑州市","block":"A区","name":"张二"}
+]

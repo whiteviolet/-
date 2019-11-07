@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>无标题文档</title>
+</head>
+
+<body>
+<%-include ../publish/publish.ejs%>
+<form action="/show" method="get">
+
+
+</form>
+<table width="1199" border="1" align="center" cellpadding="1" cellspacing="0">
+  <tr>
+    <th width="235" bgcolor="#3366FF" scope="col">用户名</th>
+    <th width="235" bgcolor="#3366FF" scope="col">头像</th>
+    <th width="235" bgcolor="#3366FF" scope="col">密码</th>
+    <th width="235" bgcolor="#3366FF" scope="col">姓名</th>
+    <th width="235" bgcolor="#3366FF" scope="col">年龄</th>
+    <th width="237" bgcolor="#3366FF" scope="col">操作</th>
+  </tr>
+  <% for(var i=0;i<user.length;i++){%>
+  <tr height="40" align="center">
+
+      <td><%=user[i].username%></td>
+      <td><img src="<%=user[i].image%>" alt="" width="100" height="100"></td>
+      <td><%=user[i].password%></td>
+      <td><%=user[i].name%></td>
+      <td><%=user[i].age%></td>
+      <td><a href="/show/edit?uid=<%=user[i]._id%>">修改</a>|<a href="/show/del?uid=<%=user[i]._id%>">删除</a></td>
+  </tr>
+  <% }%>
+  <tr height="40" align="center"><td colspan="5">
+          <%for(var i=1;i<=pageNum;i++){%>
+          <%if(i==page){%>
+          <%=i%>
+
+          <%}else{%>
+      <a href="/show?page=<%=i%>&wd=<%=wd%>"><%=i%></a>
+          <%}%>
+          <%}%>
+    </td></tr>
+</table>
+</body>
+</html>

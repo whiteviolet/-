@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={user:"liuyuhang",age:17};
+    ajax(obj);
+    function ajax(obj) {
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", loadHandler);
+        xhr.open("post", "http://10.9.25.226:4007");
+        xhr.send(JSON.stringify(obj));
+    }
+    function loadHandler(e){
+        console.log(this.response)
+    }
+</script>
+</body>
+</html>

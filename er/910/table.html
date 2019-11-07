@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>HYL</title>
+    <style>
+        .provice{
+            width:100%;
+            height:32px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom:1px solid #000000;
+            vertical-align: middle;
+        }
+        .icon{
+
+            height:32px;
+
+        }
+        .select-icon{
+            width:25px ;
+            height: 25px;
+            border-radius: 100%;
+            border:1px solid #000000;
+        }
+        .select-icon.active{
+            background: url("./assets/image/mark.png");
+            background-size:100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .next-wrap{
+            margin-left: 30px;
+        }
+
+    </style>
+
+</head>
+<body>
+<!--最外面的一层  省-->
+    <div class="wrap" id="wrap">
+        <!--<div class="provice">-->
+            <!--<div class="icon"><img src="assets/image/position.png" height="32" width="32" style="vertical-align: middle"/>北京</div>-->
+
+            <!--<div class="select-icon"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="next-wrap">-->
+        <!--<div class="provice">-->
+            <!--<div class="icon"><img src="assets/image/position.png" height="32" width="32" style="vertical-align: middle"/>北京</div>-->
+
+        <!--<div class="select-icon"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="next-wrap">-->
+        <!--<div class="provice">-->
+            <!--<div class="icon"><img src="assets/image/position.png" height="32" width="32" style="vertical-align: middle"/>北京</div>-->
+
+            <!--<div class="select-icon"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="next-wrap">-->
+        <!--<div class="next-wrap">-->
+            <!--<div class="provice">-->
+                <!--<div class="icon"><img src="assets/image/position.png" height="32" width="32" style="vertical-align: middle"/>北京</div>-->
+
+                <!--<div class="select-icon"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <script>
+        var wrap,res ,btn;
+        init();
+        function init(){
+            ajax();
+             wrap=document.getElementById("wrap");
+            //事件委托
+           wrap.addEventListener("click",clickHandler);
+           btn=document.createElement("button");
+            btn.innerHTML="提交";
+            Object.assign(btn.style,{
+                width:"300px",
+                height:"50px",
+                background:"blue",
+                fontSize:"25px",
+                color:"#ffffff",
+               marginLeft:"500px"
+
+            })
+           document.body.appendChild(btn);
+           btn.addEventListener("click",btnHandler)
+
+
+        }
+        function ajax(){
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener("load",loadHandler);
+            xhr.open("get","./data/data.json");
+            xhr.send();
+        }
+        function loadHandler(e){
+             res=JSON.parse(this.response)
+//            console.log(res);
+            var str="";
+            for(var i=0;i<res.length;i++){
+               str+='<div class="provice">\n' +
+                   '            <div class="icon"><img src="assets/image/province.png" height="32" width="32" style="vertical-align: middle"/>'
+                str+=res[i].province;
+                str+='</div><div class="select-icon"></div></div>';
+                str+='<div class="next-wrap">';
+                str+=getCity(res[i]);
+                str+='</div>'
+            }
+           create(wrap,str)
+
+        }
+
+
+    //  添加样式
+        function create(parent,str){
+            var stem=document.createElement("div");
+            stem.innerHTML=str;
+            parent.appendChild(stem);
+
+
+        }
+
+
+        //获取城市
+        function getCity(data){
+//            console.log(data)
+            var str="";
+            for(var i=0;i<res.length;i++) {
+                if(data.province ==res[i].province){
+                str += '<div class="provice">\n' +
+                    '            <div class="icon"><img src="assets/image/province.png" height="32" width="32" style="vertical-align: middle"/>'
+                str +=res[i].city;
+                str += '</div><div class="select-icon"></div></div>';
+                    str+='<div class="next-wrap">';
+                    str+=getBlock(res[i]);
+                    str+='</div>'
+                }
+            }
+
+            return str;
+        }
+
+
+        //获取地区信息
+        function getBlock(data){
+            var str="";
+            for(var i=0;i<res.length;i++) {
+                if(data.city ==res[i].city){
+                    str += '<div class="provice">\n' +
+                        '            <div class="icon"><img src="assets/image/province.png" height="32" width="32" style="vertical-align: middle"/>'
+                    str +=res[i].block+"--"+res[i].name;
+                    str += '</div><div class="select-icon" '
+                     str+=   'data-province='+res[i].province +"    " +'data-city='+res[i].city+'   '+'data-blocke='+res[i].block+'    '+'data-name='+res[i].name;
+                      str+=   '></div></div>';
+                }
+            }
+
+            return str;
+        }
+
+        function clickHandler(e){
+
+//           console.log(e.target);
+           //折叠 看下面有没有
+           if(e.target.className=="provice"){
+               if(e.target.nextElementSibling.className=="next-wrap"){
+                   if(e.target.nextElementSibling.style.display=="none"){
+                       e.target.nextElementSibling.style.display="block";
+                   }else {
+                       e.target.nextElementSibling.style.display="none";
+                   }
+               }
+
+           }
+            //点击出现右边标志
+           if(e.target.className=="select-icon"){
+
+               e.target.className="select-icon active";
+               if(e.target.parentNode.nextElementSibling.className=="next-wrap"){
+                   //联动
+                   if( e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon").length>0){
+                       for(var i=0;i<e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon").length;i++){
+                           e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon")[i].className="select-icon active";
+                       }
+
+                   }
+               }
+
+           }else if(e.target.className=="select-icon active"){
+               e.target.className="select-icon";
+               if( e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon").length>0){
+                   for(var i=0;i<e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon").length;i++){
+                       e.target.parentNode.nextElementSibling.querySelectorAll(".select-icon")[i].className="select-icon";
+                   }
+
+               }
+           }
+        }
+        //提交右边变蓝的数据
+                function btnHandler(e){
+
+                    var blueData=document.querySelectorAll(" .select-icon.active");
+//                    console.log(blueData);
+                    var arr=[];
+                  if(blueData.length>0){
+                      for(var i=0;i<blueData.length;i++){
+                          //判断 有无那个自定义属性
+                          if(blueData[i].getAttribute("data-province")&&blueData[i].getAttribute("data-city")&&blueData[i].getAttribute("data-blocke")&&blueData[i].getAttribute("data-name")){
+                          arr.push({
+                              province:blueData[i].getAttribute("data-province"),city:blueData[i].getAttribute("data-city"),block:blueData[i].getAttribute("data-blocke"),name:blueData[i].getAttribute("data-name")
+                      })
+                          }
+                      }
+
+                  }
+                  alert(JSON.stringify(arr))
+                }
+
+
+
+    </script>
+</body>
+</html>

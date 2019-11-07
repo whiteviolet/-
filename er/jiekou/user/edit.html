@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>修改</title>
+
+</head>
+<body>
+<form action="" id="form1"  method="post" >
+    头像预览: <img src="" alt="" width="100" height="100"><br>
+    头像上传：<input type="file" name="imagea" id="imagefile" /><br/>
+    <input type="hidden" id="image" value="">
+    用户名：<input type="text" id="username" placeholder="请输入用户名" /><br/>
+    密码：<input type="password" id="password" placeholder="请输入密码"><br/>
+    姓名：<input type="text" id="name" placeholder="请输入姓名" /><br/>
+    年龄：<input type="text" id="age" placeholder="请输入年龄" /><br/>
+    <button type="button" id="btn">修改</button>
+</form>
+
+
+<script src="../publish/js/jquery.js"></script>
+<script src="../publish/js/jquery.form.js"></script>
+<script src="../publish/js/params.js"></script>
+
+<script>
+    $(function () {
+        var uid=localParam().search.uid;
+        console.log(uid)
+
+
+
+        var username=$("#username");
+        var password=$("#password");
+        var name=$("#name");
+        var age=$("#age");
+        var image=$("#image");
+
+
+        $.ajax({
+            url:"http://localhost:8000/v1/show/info?uid="+uid,
+            type:"get",
+            dataType:"json",
+            success:function (res) {
+                console.log(res)
+                if(res.data.code==0){
+                    username.val(res.data.userInfo[0].username)
+                    password.val(res.data.userInfo[0].password)
+                    name.val(res.data.userInfo[0].name)
+                    age.val(res.data.userInfo[0].age)
+                }
+            }
+        })
+        $("#btn").on("click",function () {
+            if(/^\s*$/.test(username.val())){
+                alert("请输入用户名");
+                username.focus();
+                return;
+            }
+            if(/^\s*$/.test(password.val())){
+                alert("请输入密码");
+                password.focus();
+                return;
+            }
+            if(/^\s*$/.test(name.val())){
+                alert("请输入姓名");
+                name.focus();
+                return;
+            }
+            if(/^\s*$/.test(age.val())){
+                alert("请输入年龄");
+                age.focus();
+                return;
+            }
+            $.ajax({
+                url:"http://localhost:8000/v1/show/edit",
+                type:"post",
+                dataType:"json",
+                data: {
+                    uid: uid,
+                    username: username.val(),
+                    password: password.val(),
+                    name: name.val(),
+                    age: age.val(),
+                    image:image.val()
+                },
+                success:function (res) {
+//                    console.log(res)
+                    if(res.data.code==1){
+                        alert("修改成功");
+                        window.location.href="./index.html"
+                    }
+                }
+            })
+        });
+        $("#imagefile").on("change",function () {
+            $("#form1").ajaxSubmit({
+                url:"http://localhost:8000/v1/upload/image",
+                type:"post",
+                dataType:"json",
+                success:function (res) {
+//                   console.log(res)
+                    if(res.data.code==1){
+                        $("img").attr("src","http://localhost:8000/"+res.data.imageFiles);
+                        image.val(res.data.imageFiles)
+                    }
+                }
+
+            })
+
+        })
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three</title>
+
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+
+</head>
+<body>
+<div class="row">
+    <div class="dropdown province col-xs-1">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" >
+            <span></span>
+            <span class="caret"></span>
+        </button>
+        <!-- <ul class="dropdown-menu">
+             <li><a href="#">Action</a></li>
+             <li><a href="#">Another action</a></li>
+             <li><a href="#">Something else here</a></li>
+             <li><a href="#">Separated link</a></li>
+         </ul>-->
+    </div>
+    <div class="dropdown city col-xs-1">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" >
+            <span></span>
+            <span class="caret"></span>
+        </button>
+    </div>
+    <div class="dropdown town col-xs-1">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" >
+            <span></span>
+            <span class="caret"></span>
+        </button>
+    </div>
+</div>
+<script src="./node_modules/jquery/dist/jquery.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script>
+        var provinceUl,cityUl,townUl;
+        init();
+        function init(){
+            ajax({type:0x01});
+        }
+        function ajax(obj){
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener("readystatechange",readStateHandler);
+            xhr.open("POST","http://10.9.25.226:4014");
+            xhr.send(JSON.stringify(obj));
+        }
+        function readStateHandler(e){
+            if(this.readyState!==4||this.status!==200)return;
+            var obj=JSON.parse(this.response);
+            switch(obj.type) {
+                case 0x01:
+                    createMenu(obj.list,"province");
+//                    console.log(provinceUl);
+                    break;
+                case 0x02:
+                    createMenu(obj.list,"city");
+                    break;
+                case 0x03:
+                    createMenu(obj.list,"town");
+                    break;
+            }
+
+        }
+        function createMenu(list,className){
+            switch(className){
+                case "province":
+                    if(!provinceUl)break;
+                    provinceUl.remove();
+                    provinceUl.removeEventListener("click",clickHandler);
+                    provinceUl=null;
+                    break;
+                case "city":
+                    if(!cityUl)break;
+                    cityUl.remove();
+                    cityUl.removeEventListener("click",clickHandler);
+                    cityUl=null;
+                    break;
+                case "town":
+                    if(!townUl)break;
+                    townUl.remove();
+                    townUl.removeEventListener("click",clickHandler);
+                    townUl=null;
+                    break;
+
+
+            }
+            var menu=document.createElement("ul");
+            switch(className){
+                case "province":
+                    provinceUl=menu;
+                    break;
+                case "city":
+                    cityUl=menu;
+                    break;
+                case "town":
+                    townUl=menu;
+                    break;
+            }
+            menu.addEventListener("click",clickHandler);
+            menu.className="dropdown-menu";
+            for(var i=0;i<list.length;i++){
+                var li=document.createElement("li");
+                var a=document.createElement("a");
+                a.href="#";
+                a.textContent=list[i];
+                li.appendChild(a);
+                menu.appendChild(li);
+
+            }
+            document.querySelector("."+className).appendChild(menu);
+            menu.previousElementSibling.firstElementChild.textContent=list[0];
+            getInfo(menu,list[0]);
+        }
+        function clickHandler(e) {
+            if(e.target.nodeName!=="A")return;
+            this.previousElementSibling.firstElementChild.textContent=e.target.textContent;
+            getInfo(this,e.target.textContent);
+        }
+        function getInfo(menu,content){
+            switch(menu){
+                case provinceUl:
+                    ajax({type:0x02,province:content});
+                    break;
+                case cityUl:
+                    var province=document.querySelector(".province");
+                    ajax({type:0x03,province:province.firstElementChild.firstElementChild.textContent,city:content});
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>

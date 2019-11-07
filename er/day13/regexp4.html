@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+    var str="baaaaaab";
+    console.log(str.match(/a{3}/g));
+    console.log(str.match(/a{1,3}/g));
+    console.log(str.match(/a{1,}/g));//重复1次以上  贪婪匹配
+    console.log(str.match(/.*/g));//重复0次以上  贪婪匹配   包括空字符串
+
+
+
+    // *    {0,}   任意次重复,包括""
+    // +    {1,}   至少一次以上的重复
+    // ?    {0,1}  有或者没有
+    console.log("aa[bbbccddef]ee".match(/\[.*?\]/g));
+    console.log("<div></div><span></span>".match(/<.*>/g));
+
+    console.log("<div></div><span></span><>".match(/<[^<>]*>/g));
+    console.log("<div></div><span></span><>".replace(/<[^<>]*>/g,function(item){
+           item=item.replace(/</g,"《");
+           item=item.replace(/>/g,"》");
+           return item;
+    }))
+
+    console.log("<div></div><span></span><>".match(/<[^<>]+>/g));
+    console.log("<div></div><span></span><>".match(/<[^<>]*>/g))
+
+    console.log("colors".match(/colors?/g));//?只针对?前的一个字符
+    console.log("<div></div><span></span><>".match(/<.*?>/g));
+     console.log("aaaaaaa".match(/a{2,3}?/g))
+            console.log("baaaaaaab".match(/b.*?/g))//["b", "b"]
+            console.log("ababaaaaaaab".match(/.*?b/g))//["b", "aaaaaaab"]
+            console.log("baaaaaaab".match(/a.*?/g))//["a", "a", "a", "a", "a", "a", "a"]
+            console.log("babaaabaaab".match(/.*?a/g))// ["ba", "a", "a", "a", "a", "a", "a"]
+            console.log("aaaaaaa".match(/a{2}/g))
+            console.log("aaaaaaa".match(/a{0}/g))
+
+
+
+
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <style>
+                div
+                {
+                    width:50px;
+                    height:50px;
+                    background-color: red;
+                    position: absolute;
+                }
+            </style> -->
+
+    <!-- <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div> -->
+    <!-- <div></div> -->
+    <!-- <div></div>
+    <div></div>
+    <div></div>
+    <div></div>  -->
+    <script>
+        //  document.addEventListener("click", clickHandler);
+        // function clickHandler(e) {
+        //     var div = document.createElement("div");
+
+        //     Object.assign(div.style, {
+        //         width: "50px",
+        //         height: "50px",
+        //         backgroundColor: (function () {
+        //             var str = "#"
+        //             for (var i = 0; i < 6; i++) {
+
+        //                 str += Math.floor(Math.random() * 16).toString(16);
+        //                 // console.log(str)
+
+        //             }
+        //             return str
+        //         })(),
+        //         position: "absolute",
+        //         // left:e.clientX-25+"px",
+        //         // top:e.clientY-25+"px",
+        //         borderRadius:"25px"
+
+
+        //     });
+
+        //     document.body.appendChild(div)
+        // }
+        var div = document.createElement("div");
+        Object.assign(div.style, {
+            width: "50px",
+            height: "50px",
+            backgroundColor: "red",
+            position:"absolute"
+
+            // console.log(str)
+
+        })
+        document.body.appendChild(div)
+        // div.addEventListener("mousedown",mouseHandler);
+        // function mousedownHandler(e){
+        //     if(e.type==="mousedown"){
+        //         document.div=this;
+        //         document.offsetPoint={x:e.offsetX,y:e.offsetY}
+        //         div.addEventListener("mousedown",mousedownHandler);
+        // div.addEventListener("mousemove",mousedownHandler);
+        //     }else if(e.type==="mousemove"){
+        //         this.div.style.left=e.clientX-this.offsetPoint.x+"px";
+        //         this.div.style.top=e.clientY-this.offsetPoint.y+"px";
+        //     }else if(e.type==="mouseup"){
+
+        //     }
+        // }
+        // var divs=document.querySelectorAll("div");
+        //     for(var i=0;i<divs.length;i++){
+        //         divs[i].addEventListener("mousedown",mouseHandler);
+        // //     }
+        // var div=document.querySelector("div")
+        div.addEventListener("mousedown", mouseHandler)
+        function mouseHandler(e) {
+            if (e.type === "mousedown") {
+                e.preventDefault();
+                // this div
+                document.div = this;
+                document.offsetPoint = { x: e.offsetX, y: e.offsetY };
+                document.addEventListener("mousemove", mouseHandler);
+                document.addEventListener("mouseup", mouseHandler);
+            } else if (e.type === "mousemove") {
+                // this document
+                this.div.style.left = e.pageX - this.offsetPoint.x + "px";
+                this.div.style.top = e.pageY - this.offsetPoint.y + "px";
+            } else if (e.type === "mouseup") {
+                document.removeEventListener("mousemove", mouseHandler);
+                document.removeEventListener("mouseup", mouseHandler);
+            }
+        }
+        
+    </script>
+</body>
+
+</html>

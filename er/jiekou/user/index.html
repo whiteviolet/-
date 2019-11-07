@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>会员查看</title>
+
+</head>
+<body>
+<input type="text" id="wd" placeholder="请输入姓名或者用户名">
+<button type="button" onclick="goseach()">查找</button>
+<table width="1199" border="1" align="center" cellpadding="1" cellspacing="0">
+    <tr id="tr1">
+        <th width="235" bgcolor="#3366FF" scope="col">用户名</th>
+        <th width="235" bgcolor="#3366FF" scope="col">头像</th>
+        <th width="235" bgcolor="#3366FF" scope="col">密码</th>
+        <th width="235" bgcolor="#3366FF" scope="col">姓名</th>
+        <th width="235" bgcolor="#3366FF" scope="col">年龄</th>
+        <th width="237" bgcolor="#3366FF" scope="col">操作</th>
+    </tr>
+
+   <tbody id="show-body">
+
+   </tbody>
+    <tbody id="show-page">
+
+    </tbody>
+
+</table>
+<script src="../publish/js/jquery.js"></script>
+<script>
+    var kword="";
+    $(function(){
+        //获取数据
+        getData();
+    })
+    function getData(curpage=1) {
+        $.ajax({
+            url:"http://localhost:8000/v1/show?page="+curpage+"&wd="+kword,
+            type:"get",
+            dataType:"json",
+            success:function (res) {
+//                console.log(res)
+                if(res.data.code==1){
+                    var user=res.data.user;
+                    var pageNum=res.data.pageNum;
+//                    console.log(user)
+                    var str="";
+                    var pagestr="";
+                    for(var i=0;i<user.length;i++){
+                        str+=`
+                        <tr height="40" align="center">
+
+                                    <td>${user[i].username}</td>
+       <td><img src="http://localhost:8000/${user[i].image}" alt=""  width="100" height="100"></td>
+                                    <td>${user[i].password}</td>
+                                    <td>${user[i].name}</td>
+                                    <td>${user[i].age}</td>
+                                    <td><a href="edit.html?uid=${user[i]._id}">修改</a>|<a href="#" onclick="del('${user[i]._id}')">删除</a></td>
+                        </tr>
+                        `
+
+                    }
+                    pagestr+= `<tr height="40" align="center"><td colspan="6">`
+                    for(var j=1;j<=pageNum;j++){
+                        pagestr+=`<span onclick="getData(${j})">${j}</span>
+                        `
+                    }
+                    pagestr+=`</td></tr>`
+                    $("#show-body").html(str);
+                    $("#show-page").html(pagestr)
+
+                }
+            }
+
+        })
+        
+    }
+    function del(uid) {
+//        console.log(uid)
+        if(uid){
+            $.ajax({
+                url:"http://localhost:8000/v1/show/del",
+                type:"post",
+                dataType:"json",
+                data:{uid:uid},
+                success:function (res) {
+//                    console.log(res)
+                    if(res.data.code==1){
+                        getData();
+                    }
+                }
+
+            })
+        }
+    }
+    function goseach() {
+        kword=$("#wd").val();
+//        console.log(kword)
+        getData()
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr=[1,2,3,4,5]
+        // var  len=arr.unshift(5,4)
+        // console.log(len)
+        // var obj={
+        //     a:1,
+        //     b:2,
+        //     c:"2",
+            
+        // }
+        // // console.log(obj)
+        // for(var str  in obj){
+        //     // console.log(str)
+
+        //     console.log(obj[str])
+        // }
+        // var obj1={};
+        // for(var prop in obj){
+        //     obj1[prop]=obj[prop]
+        // }
+        // console.log(obj1)
+        // console.log(obj)
+        objs={
+            a:1,
+            b:2,
+            c:{
+                a:1,
+                b:2
+            },
+            d:{}
+        }
+        
+            var obj3={};
+            cloneObj(obj3,objs);
+            console.log(obj3);
+            function cloneObj(target,source){
+                for(var prop in source){
+                    if(typeof source [prop]==="object"&&source[prop]!==null){
+                        target[prop]={};
+                        cloneObj(target[prop],source[prop]); 
+                        }else{
+                        target[prop]=source[prop]
+                    }
+
+                }
+            }
+
+            console.log(obj3)
+    </script>
+</body>
+</html>

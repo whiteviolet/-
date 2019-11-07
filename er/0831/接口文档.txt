@@ -1,0 +1,111 @@
+IP:10.9.25.219
+port:4010
+Method:POST
+Data:JSON
+
+1\获取商品列表
+    req:{
+        type:0x01
+    },
+    res:{
+        type:0x01,
+        result:[
+            {id:...name:...,info:...,price:...}
+            {id:...name:...,info:...,price:...}
+            {id:...name:...,info:...,price:...}
+            {id:...name:...,info:...,price:...}
+        ],
+        error:null
+    }
+2\获取购物车
+      req:{
+            type:0x02
+        },
+        res:{
+            type:0x02,
+            result:[
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:....,price:..,num:....,total:....}
+            ],
+            error:null
+        }
+3\添加商品
+    req:
+    {
+         type:0x03,
+         id:1001
+    }
+    res:
+    {
+         type:0x03,
+         result:[
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:...,,price:...,num:....,total:....}
+                {id:...name:....,price:..,num:....,total:....}
+                ],
+         error:null
+    }
+4\更改商品数量
+     req:
+        {
+             type:0x04,
+             id:1001,
+             num:2
+        }
+       res:{
+           type:0x04,
+           result:{id:1001,num:2},
+           error:null
+       }
+5\删除商品
+    req:
+    {
+        type:0x05,
+        ids:[1001]
+    }
+    res:
+         {
+          type:0x05,
+          result:[
+                  {id:...name:...,,price:...,num:....,total:....}
+                  {id:...name:...,,price:...,num:....,total:....}
+                  {id:...name:...,,price:...,num:....,total:....}
+                  {id:...name:....,price:..,num:....,total:....}
+                  ],
+          error:null
+          }
+6\更改商品选中
+    req:
+        {
+            type:0x06,
+            ids:[1001],
+            selected:true
+        }
+    res:
+         {
+           type:0x05,
+           result:{
+            ids:[1001],
+            selected:true
+             }
+            error:null
+         }
+7\获取商品详情
+     req:
+            {
+                type:0x07
+            }
+        res:
+             {
+               type:0x05,
+               result: {
+                       id:1001,
+                       imgList:["a","b","c","d","e","f","g","h","i","j"],
+                       imgIconList:["a_icon","b_icon","c_icon","d_icon","e_icon","f_icon","g_icon","h_icon","i_icon","j_icon"],
+                       name:"7天发芽四季开花水培碗莲"
+                       },
+                error:null
+             }

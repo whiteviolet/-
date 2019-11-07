@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        str="abasdbaae"
+          console.log("abadae".match(/a(?=[be])/g));
+        // (?=n) 紧邻其后
+        // (?!n) 紧邻其后的不是n
+        // 不管是?=还是?! 都是查找条件,只查找前面的内容
+        str.replace(/a(?=[be])/g,function(item,index){
+            console.log(index);
+            console.log(item)
+            
+  
+        })
+        // str.replace(/a/g,"z")
+        // console.log(str.replace(/a(?=[be])/g,))
+
+        "abadae".replace(/a(?![be])/g,function(item,index){
+            console.log(index);
+        })
+
+    </script>
+</body>
+</html>

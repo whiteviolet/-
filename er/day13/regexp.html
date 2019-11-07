@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var reg=/[abcd]/g;
+        var reg1=new RegExp("123456789");
+        console.log(reg);
+        console.log(reg1);
+        console.log(reg.exec("abcd"))
+        console.log(reg.test("cad"))
+           
+        var str="abcdefaabhdjkehc";
+        console.log(str.match(/d/g))
+        console.log(str) 
+        console.log(str.search(/a/g))
+        console.log(str) 
+        console.log(str.replace(/a/,"zzz"))
+        console.log(str) 
+        console.log(str.split(/ab/))
+        var str1=str.replace(/a/g,"z");
+
+
+
+        var arr=[];
+        var i=0;
+        var str1=str.replace(/a/g,function(item,index){
+            arr.push(index);
+            // 按照顺序替换为不一样的内容
+            i++;
+            return i;
+        })
+      console.log(arr)
+        console.log(str1);
+
+
+    
+    </script>
+    
+</body>
+</html>

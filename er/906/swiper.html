@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>swiper</title>
+    <link rel="stylesheet" href="css/swiper.css">
+    <style>
+        .show-swiper{
+            width:600px;
+            height:300px;
+        }
+        .show-swiper img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="show-swiper" class="show-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrap">
+                <div class="swiper-slide"><img src="./img/banner1.jpg" alt=""></div><div class="swiper-slide"><img src="./img/banner2.jpg" alt=""></div><div class="swiper-slide"><img src="./img/banner3.jpg" alt=""></div>
+            </div>
+            <div class="pagination">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script>
+        new Swiper();
+    </script>
+</body>
+</html>

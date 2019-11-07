@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            background-color: blue;
+            width:50px;
+            height:50px;
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var divs=document.querySelectorAll("div");
+        for(var i=0;i<5;i++){
+        divs[i].addEventListener("click",clickHandler);
+        }
+        function clickHandler(e) {
+            Object.assign(this.style,{
+                backgroundColor:(function(){
+                    var col="#";
+                    for(var i=0;i<6;i++){
+                         col+=Math.floor(Math.random()*16).toString(16);
+                    }
+                    return col
+                })()
+            })
+
+        }
+    </script>
+</body>
+</html>

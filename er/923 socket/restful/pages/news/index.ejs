@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <title>新闻页面</title>
+</head>
+<body>
+<%-include ../public/header%>
+<ul>
+    <%
+        for(var i=0;i<news.length;i++){
+    %>
+    <li><a href="/news/details?id=<%=news[i].id%>&title=<%=news[i].title%>">
+            <%
+            if(news[i].isNews){
+            %>
+            [news]
+            <%
+            }else if(!news[i].isNews){
+            %>
+            [old]
+            <%
+            }
+            %>
+            <%=news[i].title%></a></li>
+    <%
+    }
+    %>
+</ul>
+</body>
+</html>
